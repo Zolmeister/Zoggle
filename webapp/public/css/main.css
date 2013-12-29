@@ -1,0 +1,86 @@
+body {
+  padding: 50px;
+  background: #23252e;
+  color: #01ced3;
+}
+<!-- regular: 01ced3 -->
+<!-- light: 01f9ff -->
+<!-- dark: 017d80 -->
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    font-family: "Ubuntu Mono", monospace;
+}
+a {
+  color: #01ced3;
+}
+* {
+  font-family: "Ubuntu Mono", monospace;
+}
+.word {
+  font-size: 30px;
+  margin: 2%;
+}
+
+.center-score {
+  float: left;
+  padding-left: 2%;
+}
+
+.time {
+  float: right;
+  padding-right: 2%;
+}
+
+.current-word {
+  font-size: 50px;
+  text-align: center;
+}
+
+.letter {
+  width: 22%;
+  height: 22%;
+  margin: 1.5%;
+  float: left;
+  background: #01ced3;
+  color: #000;
+  vertical-align: top;
+  line-height: 126%;
+  border-radius: 5px;
+}
+
+.board {
+  text-align: center;
+  position: relative;
+}
+
+.board-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.keyboard-input-wrapper {
+  margin: 2%;
+}
+
+.keyboard-input {
+  text-align: center;
+  background: #23252e;
+  border: 2px solid #01ced3;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  color: #01ced3;
+  border-radius: 5px;
+  font-family: "Ubuntu Mono", monospace;
+}
+.keyboard-input {
+  outline: none;
+}
+
+.share {
+  text-align: center;
+}
