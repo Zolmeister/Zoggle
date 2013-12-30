@@ -1,3 +1,3 @@
-<div class='username'>[edit] {{name}}: {{score}}</div>
+<div class='username'><span ng-click='editName()'>[edit]</span> {{name}}: {{score}}</div>
 <h1>Leaderboard</h1>
 <div c;ass='player' ng-repeat='player in players | orderBy:"score":true'>{{player.name}}: {{player.score}}</div>

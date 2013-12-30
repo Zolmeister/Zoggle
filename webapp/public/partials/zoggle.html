@@ -9,3 +9,10 @@
     <div ng-include src='"partials/leaderboard.html"'></div>
   </div>
 </div>
+<div class='name-overlay' ng-show='setName'>
+  <div class='name-overlay-center'>
+    <form ng-submit='commitName()'>
+      <input ng-model='name' class='name-input'>
+    </form>
+  </div>
+</div>
