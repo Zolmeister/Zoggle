@@ -9,6 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , boggle = require('./boggle')
+  , _ = require('lodash');
 
 var app = express();
 
@@ -33,8 +34,6 @@ app.get('/', function(req, res) {
 });
 app.get('/users', user.list);
 
-
-
 var server = http.createServer(app)
 var io = require('socket.io').listen(server);
 io.set('log level', 1)
@@ -43,17 +42,62 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-var GAME = {
-  board: boggle.generate(),
-  timeStart: Date.now(),
-  timeEnd: Date.now() + 1000 * 60 * 2 // 2 mins in the future
-}
 io.sockets.on('connection', function (socket) {
-  
+  var player = new Player()
+  GAME.players.push(player)
+  GAME.time = Date.now()
+  socket.emit('game', GAME)
+  socket.on('word', function(word) {
+    if(_.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
+      player.words.push(word)
+      player.score+=boggle.score(word)
+      socket.emit('word', word, player.score)
+      io.sockets.emit('players', GAME.players)
+    }
+  })
+  socket.on('disconnect', function() {
+    GAME.players.splice(GAME.players.indexOf(player), 1)
+  })
 });
 
+var randomName = (function() {
+  var names = require('fs').readFileSync('names','ascii').trim().split('\n').map(function(s){return s.trim()})
+  return function() {
+    return _.sample(names)
+  }
+})()
+
+function Player() {
+  this.name = randomName()
+  this.words = []
+  this.score = 0
+}
+
 // game loop
+var GAME = {
+  board: [],
+  timeStart: 0,
+  timeEnd: 0,
+  time: 0,
+  players: [],
+  won: [],
+  solutions: []
+}
+
+var twoMins = 1000 * 60 * 2; // in ms
 (function newGame() {
+  GAME.won = []
+  GAME.board = boggle.generate()
+  GAME.timeStart = Date.now()
+  GAME.timeEnd = Date.now() + twoMins
+  GAME.solutions = boggle.solve(GAME.board)
+  io.sockets.emit('game', GAME)
   
-})
+  setTimeout(function(){
+    GAME.won = GAME.players.reduce(function(best, player) {
+      return best.score >= player.score ? best : player
+    }).words
+    io.sockets.emit('won', GAME.won)
+    setTimeout(newGame)
+  }, twoMins)
+})()
