@@ -47,6 +47,7 @@ io.sockets.on('connection', function (socket) {
   GAME.players.push(player)
   GAME.time = Date.now()
   socket.emit('game', GAME)
+  socket.emit('name', player.name)
   socket.on('word', function(word) {
     if(_.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)

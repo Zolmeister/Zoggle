@@ -18,3 +18,18 @@ angular.module('zoggle.directives', [])
       })
     }
   })
+  .directive('time', function ($window) {
+    return function ($scope, $el, attrs) {
+      function zeroPad(number) {
+        return number < 10 ? '0' + number : number
+      }
+      
+      var time = attrs.time
+      var ms = zeroPad(Math.floor(time % 1000 / 10))
+      time /= 1000
+      var sec = zeroPad(Math.floor(time % 60))
+      time /= 60
+      var min = zeroPad(Math.floor(time % 60))
+      $el.text(min + ':' + sec + ':' + ms)
+    }
+  })

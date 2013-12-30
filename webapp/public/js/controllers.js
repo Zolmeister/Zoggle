@@ -11,7 +11,10 @@ angular.module('zoggle.controllers', []).
     $scope.time = 0
     $scope.players = []
     $scope.won = []
-    $scope.word = ''
+    $scope.input = {
+      word: ''
+    }
+    $scope.score = 0
     var socket = io.connect();
     socket.on('game', function(GAME) {
       console.log('game', GAME)
@@ -19,6 +22,11 @@ angular.module('zoggle.controllers', []).
         $scope[key] = GAME[key]
       }
       $scope.words = []
+    })
+    socket.on('name', function(name) {
+      if(!$scope.name) {
+        $scope.name = name
+      }
     })
     socket.on('won', function(winningWords) {
       console.log('words', winningWords)
@@ -39,9 +47,9 @@ angular.module('zoggle.controllers', []).
       socket.emit('name', $scope.name)
     }
     $scope.guess = function() {
-      console.log('word', $scope.word)
-      socket.emit('word', $scope.word)
-      $scope.word = ''
+      console.log('word', $scope.input.word)
+      socket.emit('word', $scope.input.word)
+      $scope.input.word = ''
     }
     function timer(){
       $scope.$apply(function() {
