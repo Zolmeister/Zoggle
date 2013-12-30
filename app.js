@@ -56,6 +56,10 @@ io.sockets.on('connection', function (socket) {
       io.sockets.emit('players', GAME.players)
     }
   })
+  socket.on('name', function(name) {
+    player.name = name
+    io.sockets.emit('players', GAME.players)
+  })
   socket.on('disconnect', function() {
     GAME.players.splice(GAME.players.indexOf(player), 1)
   })
@@ -85,20 +89,28 @@ var GAME = {
   solutions: []
 }
 
-var twoMins = 1000 * 60 * 2; // in ms
+var twoMins = 1000*5; //1000 * 60 * 2; // in ms
+var twentySeconds = 1000*5;
 (function newGame() {
-  GAME.won = []
-  GAME.board = boggle.generate()
-  GAME.timeStart = Date.now()
-  GAME.timeEnd = Date.now() + twoMins
-  GAME.solutions = boggle.solve(GAME.board)
-  io.sockets.emit('game', GAME)
-  
   setTimeout(function(){
+    setTimeout(newGame, twentySeconds)
+    if(!GAME.players.length) return
     GAME.won = GAME.players.reduce(function(best, player) {
       return best.score >= player.score ? best : player
     }).words
     io.sockets.emit('won', GAME.won)
-    setTimeout(newGame)
   }, twoMins)
+  
+  GAME.won = []
+  GAME.board = boggle.generate()
+  GAME.timeStart = Date.now()
+  GAME.timeEnd = Date.now() + twoMins
+  GAME.time = Date.now()
+  GAME.timeNext = GAME.timeEnd + twentySeconds
+  GAME.solutions = boggle.solve(GAME.board)
+  _.each(GAME.players, function(player){
+    player.words = []
+    player.score = 0
+  })
+  io.sockets.emit('game', GAME)
 })()
