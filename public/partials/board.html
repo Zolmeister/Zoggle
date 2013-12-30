@@ -1,14 +1,14 @@
-<div class='center-score'>Score: 23</div>
-<div class='time'>01:59:00</div>
+<div class='center-score'>Score: {{score}}</div>
+<div class='time' time='{{timeEnd-time}}'></div>
 <div style='clear: both'></div>
-<div class='current-word'>ZZZ</div>
+<div class='current-word'>{{input.word || "&nbsp;"}}</div>
 <div class='board' square dynamicfont=6>
   <div class='letter' ng-repeat='letter in board track by $index'>{{letter}}</div>
   <div class='board-overlay'></div>
 </div>
 <div class='keyboard-input-wrapper'>
-  <form ng-submit='guess()' ng-controller='MainCtrl'>
-    <input ng-model='word' type='text' name='word' class='keyboard-input' autofocus>
+  <form ng-submit='guess()'>
+    <input ng-model='input.word' type='text' name='word' class='keyboard-input' autofocus>
   </form>
 </div>
 
