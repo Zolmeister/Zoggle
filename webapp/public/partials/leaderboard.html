@@ -1,7 +1,3 @@
 <div class='username'>[edit] Guest871: 23</div>
 <h1>Leaderboard</h1>
-<div class='player'>Jim: 100</div>
-<div class='player'>Joe: 90</div>
-<div class='player'>Jay: 60</div>
-<div class='player'>alphred: 4</div>
-<div class='player'>jordan: 1</div>
+<div c;ass='player' ng-repeat='player in players | orderBy:"score":true'>{{player.name}}: {{player.score}}</div>
