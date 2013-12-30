@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , boggle = require('./boggle')
 
 var app = express();
 
@@ -32,6 +33,27 @@ app.get('/', function(req, res) {
 });
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+
+
+var server = http.createServer(app)
+var io = require('socket.io').listen(server);
+io.set('log level', 1)
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+var GAME = {
+  board: boggle.generate(),
+  timeStart: Date.now(),
+  timeEnd: Date.now() + 1000 * 60 * 2 // 2 mins in the future
+}
+io.sockets.on('connection', function (socket) {
+  
+});
+
+// game loop
+(function newGame() {
+  
+})
