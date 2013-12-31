@@ -5,10 +5,10 @@
 <div style='clear: both'></div>
 <div class='current-word'>{{input.word || "&nbsp;"}}</div>
 <!-- TODO move events to directive -->
-<div class='board' square dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
+<div class='board' square noscroll dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
   <div class='letter' ng-repeat='letter in board track by $index' ng-class='{selected: selected.indexOf($index) != -1}'>
     {{letter}}
-    <div class='letter-select-box' ng-mousemove='mouseMove($index)'  ng-mousedown='mouseDown($index)' ng-mouseup='mouseUp($index)'></div>
+    <div class='letter-select-box' ng-mousemove='mouseMove($index)'  ng-mousedown='mouseDown($index)' ng-mouseup='mouseUp($index)' ng-touchstart='mouseDown($index)' ng-touchend='mouseUp($index)' ng-touchmove='mouseMove($index)'></div>
   </div>
   <!-- <div class='board-overlay'></div> -->
 </div>
