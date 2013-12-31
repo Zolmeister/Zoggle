@@ -49,6 +49,7 @@ io.sockets.on('connection', function (socket) {
   socket.emit('game', GAME)
   socket.emit('name', player.name)
   socket.on('word', function(word) {
+    word = word.toLowerCase()
     if(_.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)
       player.score+=boggle.score(word)

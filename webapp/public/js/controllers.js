@@ -20,6 +20,35 @@ controller('MainCtrl', ['$scope',
     $scope.score = 0
     $scope.setName = false
     $scope.isMobile = true
+    $scope.selected = []
+    $scope.isSelecting = false
+    $scope.mouseDown = function(index) {
+      $scope.isSelecting = true
+      if(!_.contains($scope.selected, index)){
+        $scope.selected.push(index)
+        $scope.input.word += $scope.board[index]
+      }
+    }
+    $scope.mouseUp = function(index) {
+      if(index && $scope.isSelecting && !_.contains($scope.selected, index)){
+        $scope.selected.push(index)
+        $scope.input.word += $scope.board[index]
+      }
+      /*$scope.input.word = _.map($scope.selected, function(i) {
+        return $scope.board[i]
+      }).join('')*/
+      $scope.selected = []
+      $scope.isSelecting = false
+      $scope.guess()
+    }
+    $scope.mouseMove = function(index) {
+      if($scope.isSelecting && !_.contains($scope.selected, index)){
+        $scope.selected.push(index)
+        $scope.input.word += $scope.board[index]
+      }
+    }
+    
+    
     var socket = io.connect();
     socket.on('game', function (GAME) {
       console.log('game', GAME)
