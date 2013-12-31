@@ -87,6 +87,7 @@ controller('MainCtrl', ['$scope',
       $scope.setName = true
     }
     $scope.commitName = function() {
+      $scope.name = $scope.name.substr(0,19)
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
       $scope.setName = false
