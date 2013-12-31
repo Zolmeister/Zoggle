@@ -105,6 +105,10 @@ a {
   padding: 10px;
   display: inline-block;
 }
+.share-text {
+  cursor: pointer;
+  text-decoration: none;
+}
 .share-button {
   cursor: pointer;
   text-decoration: underline;
