@@ -6,18 +6,25 @@
 angular.module('zoggle.directives', [])
   .directive('square', function ($window) {
     return function ($scope, $el, attrs) {
-      $(function () {
+      function setHeight() {
         $el.css('height', $el.width())
-      })
+      }
+      //$window.onresize = setHeight
+      setHeight()
     }
   })
   .directive('dynamicfont', function ($window) {
+    
     return function ($scope, $el, attrs) {
-      $(function () {
+      function setFont() {
         $el.css('font-size', $el.width() / attrs.dynamicfont)
-      })
+      }
+      //$window.onresize = setFont
+      //$window.bind...
+      setFont()
     }
   })
+/*
   .directive('time', function ($window) {
     return function ($scope, $el, attrs) {
       function zeroPad(number) {
@@ -37,4 +44,4 @@ angular.module('zoggle.directives', [])
       }
       //setTime()
     }
-  })
+  })*/
