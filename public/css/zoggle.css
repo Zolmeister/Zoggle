@@ -81,6 +81,7 @@ a {
 
 .share {
   text-align: center;
+  cursor: pointer;
 }
 
 .name-overlay {
@@ -102,4 +103,18 @@ a {
 }
 .name-overlay-center:before {
   content: 'Name: ';
+}
+
+.winning-word {
+  padding: 10px;
+  display: inline-block;
+}
+
+.share-button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mobile-share {
+  padding: 20px;
 }

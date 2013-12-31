@@ -89,7 +89,7 @@ var GAME = {
   solutions: []
 }
 
-var twoMins = 1000*5; //1000 * 60 * 2; // in ms
+var twoMins = 100000000 //1000*5; //1000 * 60 * 2; // in ms
 var twentySeconds = 1000*5;
 (function newGame() {
   setTimeout(function(){
@@ -98,6 +98,8 @@ var twentySeconds = 1000*5;
     GAME.won = GAME.players.reduce(function(best, player) {
       return best.score >= player.score ? best : player
     }).words
+    //debug
+    //GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
     io.sockets.emit('won', GAME.won)
   }, twoMins)
   

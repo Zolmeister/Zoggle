@@ -1,3 +1,4 @@
-<div class='username'><span ng-click='editName()'>[edit]</span> {{name}}: {{score}}</div>
+<div class='username' ng-if='!isMobile'><i class="fa fa-pencil" ng-click='editName()'></i> {{name}}: {{score}}</div>
 <h1>Leaderboard</h1>
-<div c;ass='player' ng-repeat='player in players | orderBy:"score":true'>{{player.name}}: {{player.score}}</div>
+<div c;ass='player' ng-repeat='player in players track by $index | orderBy:"score":true'>{{player.name}}: {{player.score}}</div>
+<div ng-include src='"partials/share.html"' ng-if='isMobile' class='mobile-share'></div>

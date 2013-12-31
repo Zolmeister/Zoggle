@@ -1,18 +1,19 @@
-<div class='center-score'>Score: {{score}}</div>
+<div class='center-score' ng-if='!isMobile'>Score: {{score}}</div>
+<div class='center-score' ng-if='isMobile'><i class="fa fa-pencil" ng-click='editName()'></i> {{name}}: {{score}}</div>
 <div class='time' >{{timer}}</div>
 <div style='clear: both'></div>
 <div class='current-word'>{{input.word || "&nbsp;"}}</div>
-<div class='board' square dynamicfont=6>
+<div class='board' square dynamicfont=6 ng-show='!gameOver'>
   <div class='letter' ng-repeat='letter in board track by $index'>{{letter}}</div>
   <div class='board-overlay'></div>
 </div>
-<div class='keyboard-input-wrapper'>
+<div square ng-show='gameOver'>
+  <h1>Winning Words</h1>
+<div class='winning-word' ng-repeat='word in won track by $index'>{{word}}</div>
+</div>
+<div class='keyboard-input-wrapper' ng-if='!isMobile'>
   <form ng-submit='guess()'>
     <input ng-model='input.word' type='text' name='word' class='keyboard-input' autofocus>
   </form>
 </div>
-
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<span class='st_sharethis_hcount' displayText='ShareThis' style="display:none;"></span>
-<div class='share'>Play with friends: <span ng-click='share()'>share</span></div>
+<div ng-include src='"partials/share.html"' ng-if='!isMobile'></div>
