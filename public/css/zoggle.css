@@ -55,6 +55,10 @@ a {
   position: relative;
 }
 
+.center-column {
+  max-width: 600px;
+}
+
 .board-overlay {
   position: absolute;
   height: 100%;

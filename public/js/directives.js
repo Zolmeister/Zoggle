@@ -9,7 +9,7 @@ angular.module('zoggle.directives', [])
       function setHeight() {
         $el.css('height', $el.width())
       }
-      //$window.onresize = setHeight
+      $($window).bind('resize', setHeight)
       setHeight()
     }
   })
@@ -19,8 +19,7 @@ angular.module('zoggle.directives', [])
       function setFont() {
         $el.css('font-size', $el.width() / attrs.dynamicfont)
       }
-      //$window.onresize = setFont
-      //$window.bind...
+      $($window).bind('resize', setFont)
       setFont()
     }
   })
