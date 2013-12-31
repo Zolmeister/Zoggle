@@ -19,7 +19,7 @@ controller('MainCtrl', ['$scope',
     $scope.gameOver = false
     $scope.score = 0
     $scope.setName = false
-    $scope.isMobile = false
+    $scope.isMobile = true
     $scope.selected = []
     $scope.isSelecting = false
     $scope.mouseDown = function(index) {
