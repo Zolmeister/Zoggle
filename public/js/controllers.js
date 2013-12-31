@@ -63,7 +63,13 @@ controller('MainCtrl', ['$scope',
       socket.emit('name', $scope.name)
       $scope.setName = false
     }
-
+    $scope.share = function() {
+      try{
+        stWidget.shareables[0].popup()
+      } catch(e) {
+        console.log('error opening share popup', e.stack)
+      }
+    }
     function zeroPad(number) {
       return number < 10 ? '0' + number : number
     }
