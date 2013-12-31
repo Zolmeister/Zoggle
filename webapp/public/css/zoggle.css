@@ -134,3 +134,10 @@ a {
   top: 25%;
   left: 25%;
 }
+.player-inline {
+  display: inline-block;
+  padding: 5px;
+}
+.player-inline:after {
+  content: ' |'
+}
