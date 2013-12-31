@@ -19,9 +19,11 @@ controller('MainCtrl', ['$scope',
     $scope.gameOver = false
     $scope.score = 0
     $scope.setName = false
+    $scope.isMobile = true
     var socket = io.connect();
     socket.on('game', function (GAME) {
       console.log('game', GAME)
+      $scope.gameOver = false
       for (var key in GAME) {
         $scope[key] = GAME[key]
       }
