@@ -69,6 +69,7 @@ io.sockets.on('connection', function (socket) {
   })
   socket.on('disconnect', function() {
     GAME.players.splice(GAME.players.indexOf(player), 1)
+    io.sockets.emit('players', GAME.players)
   })
 });
 
