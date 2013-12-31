@@ -19,7 +19,7 @@ controller('MainCtrl', ['$scope',
     $scope.gameOver = false
     $scope.score = 0
     $scope.setName = false
-    $scope.isMobile = true
+    $scope.isMobile = false
     $scope.selected = []
     $scope.isSelecting = false
     $scope.mouseDown = function(index) {
@@ -34,9 +34,6 @@ controller('MainCtrl', ['$scope',
         $scope.selected.push(index)
         $scope.input.word += $scope.board[index]
       }
-      /*$scope.input.word = _.map($scope.selected, function(i) {
-        return $scope.board[i]
-      }).join('')*/
       $scope.selected = []
       $scope.isSelecting = false
       $scope.guess()
