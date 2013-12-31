@@ -58,7 +58,13 @@ io.sockets.on('connection', function (socket) {
     }
   })
   socket.on('name', function(name) {
-    player.name = name.substr(0,19)
+    var exists = !_.every(GAME.players, function(player) {
+      return player.name !== name
+    })
+    if(exists) return socket.emit('nameUsed', true)
+    
+    player.name = name.substr(0,18)
+    socket.emit('nameUsed', false)
     io.sockets.emit('players', GAME.players)
   })
   socket.on('disconnect', function() {

@@ -16,7 +16,8 @@
 <div class='name-overlay' ng-show='setName'>
   <div class='name-overlay-center'>
     <form ng-submit='commitName()'>
-      <input ng-model='name' class='name-input' maxlength='19'>
+      <input ng-model='name' class='name-input' maxlength='18'>
     </form>
+    <span ng-show='nameUsed'>That name is already in use</span>
   </div>
 </div>
