@@ -3,8 +3,9 @@
 /* Controllers */
 
 angular.module('zoggle.controllers', []).
-controller('MainCtrl', ['$scope',
-  function ($scope) {
+controller('MainCtrl', ['$scope', 'checkMobile',
+
+  function ($scope, checkMobile) {
     $scope.words = []
     $scope.board = []
     $scope.timeStart = 0
@@ -19,18 +20,18 @@ controller('MainCtrl', ['$scope',
     $scope.gameOver = false
     $scope.score = 0
     $scope.setName = false
-    $scope.isMobile = true
+    $scope.isMobile = checkMobile()
     $scope.selected = []
     $scope.isSelecting = false
-    $scope.mouseDown = function(index) {
+    $scope.mouseDown = function (index) {
       $scope.isSelecting = true
-      if(!_.contains($scope.selected, index)){
+      if (!_.contains($scope.selected, index)) {
         $scope.selected.push(index)
         $scope.input.word += $scope.board[index]
       }
     }
-    $scope.mouseUp = function(index) {
-      if(index && $scope.isSelecting && !_.contains($scope.selected, index)){
+    $scope.mouseUp = function (index) {
+      if (index && $scope.isSelecting && !_.contains($scope.selected, index)) {
         $scope.selected.push(index)
         $scope.input.word += $scope.board[index]
       }
@@ -38,14 +39,14 @@ controller('MainCtrl', ['$scope',
       $scope.isSelecting = false
       $scope.guess()
     }
-    $scope.mouseMove = function(index) {
-      if($scope.isSelecting && !_.contains($scope.selected, index)){
+    $scope.mouseMove = function (index) {
+      if ($scope.isSelecting && !_.contains($scope.selected, index)) {
         $scope.selected.push(index)
         $scope.input.word += $scope.board[index]
       }
     }
-    
-    
+
+
     var socket = io.connect();
     socket.on('game', function (GAME) {
       console.log('game', GAME)
@@ -74,7 +75,7 @@ controller('MainCtrl', ['$scope',
       $scope.words.unshift(word)
       $scope.score = score
     })
-    socket.on('nameUsed', function(used) {
+    socket.on('nameUsed', function (used) {
       $scope.nameUsed = used
       $scope.setName = used
       $scope.$apply()
@@ -88,21 +89,22 @@ controller('MainCtrl', ['$scope',
       socket.emit('word', $scope.input.word)
       $scope.input.word = ''
     }
-    $scope.editName = function() {
+    $scope.editName = function () {
       $scope.setName = true
     }
-    $scope.commitName = function() {
-      $scope.name = $scope.name.substr(0,18)
+    $scope.commitName = function () {
+      $scope.name = $scope.name.substr(0, 18)
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
     }
-    $scope.share = function() {
-      try{
+    $scope.share = function () {
+      try {
         stWidget.shareables[0].popup()
-      } catch(e) {
+      } catch (e) {
         console.log('error opening share popup', e.stack)
       }
     }
+
     function zeroPad(number) {
       return number < 10 ? '0' + number : number
     }
@@ -112,7 +114,7 @@ controller('MainCtrl', ['$scope',
       $scope.$apply(function () {
         $scope.time += 53
         var time = $scope.timeEnd - $scope.time
-        if(time < 0) {
+        if (time < 0) {
           time = $scope.timeNext - $scope.time
           $scope.gameOver = true
         } else {

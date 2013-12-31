@@ -2,41 +2,33 @@ body {
   padding: 30px;
   background: #23252e;
   color: #01ced3;
+  text-align: center;
 }
-<!-- regular: 01ced3 -->
-<!-- light: 01f9ff -->
-<!-- dark: 017d80 -->
-body,
-.pure-g [class *= "pure-u"],
-.pure-g-r [class *= "pure-u"] {
-    font-family: "Ubuntu Mono", monospace;
+<!-- regular: 01ced3 --> <!-- light: 01f9ff --> <!-- dark: 017d80 --> body, .pure-g[class *="pure-u"], .pure-g-r[class *="pure-u"] {
+  font-family:"Ubuntu Mono", monospace;
 }
 a {
   color: #01ced3;
 }
 * {
-  font-family: "Ubuntu Mono", monospace;
+  font-family:"Ubuntu Mono", monospace;
 }
 .word {
   font-size: 30px;
   margin: 2%;
 }
-
 .center-score {
   float: left;
   padding-left: 2%;
 }
-
 .time {
   float: right;
   padding-right: 2%;
 }
-
 .current-word {
   font-size: 50px;
   text-align: center;
 }
-
 .letter {
   width: 22%;
   height: 22%;
@@ -49,16 +41,20 @@ a {
   border-radius: 5px;
   position: relative;
 }
-
 .board {
   text-align: center;
   position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
 .center-column {
   max-width: 600px;
+  margin: 0 auto;
 }
-
 .board-overlay {
   position: absolute;
   height: 100%;
@@ -66,29 +62,25 @@ a {
   top: 0;
   left: 0;
 }
-
 .keyboard-input-wrapper {
   margin: 2%;
 }
-
 .keyboard-input, .name-input {
   text-align: center;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   border: 2px solid #01ced3;
   width: 100%;
   height: 40px;
   box-sizing: border-box;
   color: #01ced3;
   border-radius: 5px;
-  font-family: "Ubuntu Mono", monospace;
+  font-family:"Ubuntu Mono", monospace;
   outline: none;
 }
-
 .share {
   text-align: center;
   cursor: pointer;
 }
-
 .name-overlay {
   position: absolute;
   top: 0;
@@ -107,23 +99,19 @@ a {
   height: 100px;
 }
 .name-overlay-center:before {
-  content: 'Name: ';
+  content:'Name: ';
 }
-
 .winning-word {
   padding: 10px;
   display: inline-block;
 }
-
 .share-button {
   cursor: pointer;
   text-decoration: underline;
 }
-
 .mobile-share {
   padding: 20px;
 }
-
 .letter.selected {
   background: #fff;
 }
@@ -139,5 +127,5 @@ a {
   padding: 5px;
 }
 .player-inline:after {
-  content: ' |'
+  content:' |'
 }

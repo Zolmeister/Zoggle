@@ -8,7 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , boggle = require('./boggle')
+  , boggle = require('boggle')
   , _ = require('lodash');
 
 var app = express();
@@ -117,7 +117,7 @@ var twentySeconds = 1000*5;
   GAME.timeEnd = Date.now() + twoMins
   GAME.time = Date.now()
   GAME.timeNext = GAME.timeEnd + twentySeconds
-  GAME.solutions = boggle.solve(GAME.board)
+  GAME.solutions = boggle(GAME.board)
   _.each(GAME.players, function(player){
     player.words = []
     player.score = 0
