@@ -74,6 +74,11 @@ controller('MainCtrl', ['$scope',
       $scope.words.unshift(word)
       $scope.score = score
     })
+    socket.on('nameUsed', function(used) {
+      $scope.nameUsed = used
+      $scope.setName = used
+      $scope.$apply()
+    })
     $scope.name = localStorage.name
     if ($scope.name) {
       socket.emit('name', $scope.name)
@@ -87,10 +92,9 @@ controller('MainCtrl', ['$scope',
       $scope.setName = true
     }
     $scope.commitName = function() {
-      $scope.name = $scope.name.substr(0,19)
+      $scope.name = $scope.name.substr(0,18)
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
-      $scope.setName = false
     }
     $scope.share = function() {
       try{
