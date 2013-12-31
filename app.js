@@ -58,7 +58,7 @@ io.sockets.on('connection', function (socket) {
     }
   })
   socket.on('name', function(name) {
-    player.name = name
+    player.name = name.substr(0,19)
     io.sockets.emit('players', GAME.players)
   })
   socket.on('disconnect', function() {
