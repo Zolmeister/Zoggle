@@ -209,13 +209,23 @@ a {
   content:' |'
 }
 
+/* fading transition */
 .winning-words {
   position: absolute;
 }
 .board-container {
   position:relative;
 }
-.board.ng-hide-add, .board.ng-hide-remove {
+
+.fade.ng-enter, .fade.ng-move {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.fade.ng-hide-add, .fade.ng-hide-remove {
   -webkit-transition:all linear 0.5s;
   -moz-transition:all linear 0.5s;
   -o-transition:all linear 0.5s;
@@ -223,12 +233,15 @@ a {
   display:block!important;
 }
  
-.board.ng-hide-add.ng-hide-add-active,
-.board.ng-hide-remove {
+.fade.ng-hide-add.ng-hide-add-active,
+.fade.ng-hide-remove,
+.fade.ng-leave {
   opacity:0;
 }
  
-.board.ng-hide-add,
-.board.ng-hide-remove.ng-hide-remove-active {
+.fade.ng-hide-add,
+.fade.ng-hide-remove.ng-hide-remove-active,
+.fade.ng-enter.ng-enter-active,
+.fade.ng-move.ng-move-active {
   opacity:1;
 }

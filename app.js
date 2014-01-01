@@ -47,13 +47,15 @@ io.sockets.on('connection', function (socket) {
   GAME.time = Date.now()
   socket.emit('game', GAME)
   socket.emit('name', player.name)
+  socket.broadcast.emit('player-add', player)
+  socket.emit('players', GAME.players)
   socket.on('word', function(word) {
     word = word.toLowerCase()
     if(!GAME.gameOver && _.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)
       player.score+=boggle.score(word)
       socket.emit('word', null, word, player.score)
-      io.sockets.emit('players', GAME.players)
+      io.sockets.emit('player-update', GAME.players.indexOf(player), player)
     } else if (!GAME.gameOver && _.contains(GAME.solutions, word)){
       socket.emit('word', 'used')
     } else {
@@ -69,11 +71,11 @@ io.sockets.on('connection', function (socket) {
     
     player.name = name.substr(0,18)
     socket.emit('nameUsed', false)
-    io.sockets.emit('players', GAME.players)
+    io.sockets.emit('player-update', GAME.players.indexOf(player), player)
   })
   socket.on('disconnect', function() {
     GAME.players.splice(GAME.players.indexOf(player), 1)
-    io.sockets.emit('players', GAME.players)
+    io.sockets.emit('player-remove', player)
   })
 });
 
