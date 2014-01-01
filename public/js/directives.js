@@ -7,7 +7,7 @@ angular.module('zoggle.directives', [])
   .directive('square', function ($window, $timeout) {
   return function ($scope, $el, attrs) {
     function setHeight() {
-      $el.css('height', $el.width())
+      $el.css('min-height', $el.width())
     }
     $($window).bind('resize', setHeight)
     setHeight()

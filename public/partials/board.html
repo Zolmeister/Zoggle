@@ -5,16 +5,17 @@
 <div style='clear: both'></div>
 <div class='current-word'>{{input.word || "&nbsp;"}}</div>
 
-<div class='board' square noscroll dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
+<div class='board noselect' square noscroll dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
   <div class='letter' ng-repeat='letter in board track by $index' ng-class='{selected: selected.indexOf($index) != -1, "word-success":wordSuccess === true, "word-fail": wordSuccess === "fail", "word-used": wordSuccess === "used"}' boardload>
     {{letter}}
     <div class='letter-select-box'></div>
   </div>
   <div class='board-overlay' catcher targets='letter-select-box'></div>
 </div>
-<div square ng-show='gameOver'>
+<div class='board' square ng-show='gameOver'>
   <h1>Winning Words</h1>
   <div class='winning-word' ng-repeat='word in won track by $index'>{{word}}</div>
+  <div class='countdown' ng-show='gameOver && timeLeft <= 5 '>{{timeLeft}}</div>
 </div>
 <div class='keyboard-input-wrapper' ng-if='!isMobile'>
   <form ng-submit='guess()'>

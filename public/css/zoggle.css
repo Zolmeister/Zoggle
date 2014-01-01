@@ -71,6 +71,8 @@ a {
 .board {
   text-align: center;
   position: relative;
+}
+.noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -78,6 +80,7 @@ a {
   -ms-user-select: none;
   user-select: none;
 }
+
 .center-column {
   max-width: 520px;
   margin: 0 auto;
@@ -121,6 +124,15 @@ a {
   width: 100%;
   top: 0;
   left: 0;
+}
+.countdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -0.5em 0 0 -0.5em;
+  font-size: 20em;
+  width: 1em;
+  color: #d30000;
 }
 .keyboard-input-wrapper {
   margin: 2%;
