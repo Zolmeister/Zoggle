@@ -104,7 +104,7 @@ var GAME = {
 }
 
 var twoMins = 1000 * 60 * 2; // in ms
-var twentySeconds = 1000 * 20;
+var twentySeconds = 1000 * 15;
 var boardQueue = []
 function goodBoard() {
   do {
