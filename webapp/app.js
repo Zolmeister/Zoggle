@@ -102,8 +102,8 @@ var GAME = {
   gameOver: false
 }
 
-var twoMins = 5000 //1000 * 60 * 2; // in ms
-var twentySeconds = 5000; //1000 * 20;
+var twoMins = 1000 * 60 * 2; // in ms
+var twentySeconds = 1000 * 20;
 (function newGame() {
   setTimeout(function(){
     if(!GAME.players.length) return newGame()
@@ -113,7 +113,7 @@ var twentySeconds = 5000; //1000 * 20;
       return best.score >= player.score ? best : player
     }).words
     //debug
-    //GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
+    GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
     io.sockets.emit('won', GAME.won)
   }, twoMins)
   
