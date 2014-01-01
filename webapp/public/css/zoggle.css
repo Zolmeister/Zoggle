@@ -1,7 +1,9 @@
 /* regular: 01ced3 */
+
 /* light: 01f9ff */
+
 /* dark: 017d80 */
-body {
+ body {
   padding: 15px;
   background: #23252e;
   color: #01ced3;
@@ -53,7 +55,7 @@ a {
   line-height: 126%;
   border-radius: 5px;
   position: relative;
-  -webkit-transition: -webkit-transform 0.1s;
+  -webkit-transition: -webkit-transform 0.1s, color 0.4s;
 }
 .letter.selected {
   background: #fff;
@@ -79,6 +81,39 @@ a {
 .center-column {
   max-width: 520px;
   margin: 0 auto;
+}
+.word-success {
+  -webkit-animation: green 1s;
+}
+@-webkit-keyframes green {
+  from {
+    color:#006500;
+  }
+  to {
+    color:#000;
+  }
+}
+.word-fail {
+  -webkit-animation: red 1s;
+}
+@-webkit-keyframes red {
+  from {
+    color:#650000;
+  }
+  to {
+    color:#000;
+  }
+}
+.word-used {
+  -webkit-animation: yellow 1s;
+}
+@-webkit-keyframes yellow {
+  from {
+    color:#656500;
+  }
+  to {
+    color:#000;
+  }
 }
 .board-overlay {
   position: absolute;
