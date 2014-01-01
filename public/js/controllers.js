@@ -72,9 +72,6 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       $scope.setName = true
     }
     $scope.commitName = function () {
-      
-      // name did not change
-      if($scope.name === localStorage.name) return
       $scope.name = $scope.name.substr(0, 18)
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
@@ -100,7 +97,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
         var sec = zeroPad(Math.floor(time % 60))
         time /= 60
         var min = zeroPad(Math.floor(time % 60))
-        $scope.timer = ($scope.gameOver ? 'Next game in: ' : '') + min + ':' + sec + ':' + ms
+        $scope.timer = min + ':' + sec + ':' + ms
       })
     }
     setTimeout(timer, 53)
