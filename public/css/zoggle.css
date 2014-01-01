@@ -70,7 +70,8 @@ a {
 }
 .board {
   text-align: center;
-  position: relative;
+  position: absolute;
+  width: 100%;
 }
 .noselect {
   -webkit-touch-callout: none;
@@ -210,9 +211,6 @@ a {
 }
 
 /* fading transition */
-.winning-words {
-  position: absolute;
-}
 .board-container {
   position:relative;
 }
