@@ -12,6 +12,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     $scope.timeEnd = 0
     $scope.timeNext = 0
     $scope.time = 0
+    $scope.timeDelta = 0
     $scope.players = []
     $scope.won = []
     $scope.input = {
@@ -37,6 +38,9 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
       for (var key in GAME) {
         $scope[key] = GAME[key]
       }
+      
+      // time difference between me and the server, with 50ms buffer
+      $scope.timeDelta = Date.now() - $scope.time + 50
       $scope.words = []
       $scope.$apply()
     })
@@ -57,10 +61,8 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
       $scope.players.push(player)
       $scope.$apply()
     })
-    socket.on('player-remove', function(player) {
-      $scope.players.splice(_.findIndex($scope.players, function(p){
-        return player.name === p.name
-      }), 1)
+    socket.on('player-remove', function(index) {
+      $scope.players.splice(index, 1)
       $scope.$apply()
     })
     socket.on('player-update', function(index, player) {
@@ -141,10 +143,10 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     function timer() {
       setTimeout(timer, 53)
       $scope.$apply(function () {
-        $scope.time += 53
-        var time = $scope.timeEnd - $scope.time
+        var now = Date.now() + $scope.timeDelta
+        var time = $scope.timeEnd - now
         if (time < 0) {
-          time = $scope.timeNext - $scope.time
+          time = $scope.timeNext - now
           $scope.gameOver = true
         } else {
           $scope.gameOVer = false

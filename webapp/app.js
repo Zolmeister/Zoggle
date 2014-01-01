@@ -74,8 +74,8 @@ io.sockets.on('connection', function (socket) {
     io.sockets.emit('player-update', GAME.players.indexOf(player), player)
   })
   socket.on('disconnect', function() {
+    io.sockets.emit('player-remove', GAME.players.indexOf(player))
     GAME.players.splice(GAME.players.indexOf(player), 1)
-    io.sockets.emit('player-remove', player)
   })
 });
 
