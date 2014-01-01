@@ -84,7 +84,12 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       var currentLetter = grid[pos] === 'Qu' ? 'Q' : grid[pos]
       if(pos < 0 || pos > grid.length || _.contains(past, pos) || word[index] !== currentLetter) return []
       
-      var dirs = [-5, -4, -3, -1, 1, 3, 4, 5]
+      var dirs = _.filter([-5, -4, -3, -1, 1, 3, 4, 5], function(dir) {
+        var col = pos%4
+        if (col === 0 && (dir === -1 || dir === 3 || dir === -5)) return false
+        if (col === 3 && (dir === -3 || dir === 1 || dir === 5)) return false
+        return true
+      })
       return _.map(dirs, function(dir) {
         return depthFirstSearch(grid, word, pos+dir, index+1, past.concat(pos))
       })
