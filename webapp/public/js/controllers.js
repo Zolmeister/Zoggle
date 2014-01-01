@@ -32,7 +32,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
 
     var socket = io.connect();
     socket.on('game', function (GAME) {
-      console.log('game', GAME)
+      //console.log('game', GAME)
       $scope.gameOver = false
       for (var key in GAME) {
         $scope[key] = GAME[key]
@@ -46,12 +46,26 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
       }
     })
     socket.on('won', function (winningWords) {
-      console.log('words', winningWords)
+      //console.log('words', winningWords)
       $scope.won = winningWords
     })
     socket.on('players', function (players) {
-      console.log('players', players)
+      //console.log('players', players)
       angular.copy(players, $scope.players)
+    })
+    socket.on('player-add', function(player) {
+      $scope.players.push(player)
+      $scope.$apply()
+    })
+    socket.on('player-remove', function(player) {
+      $scope.players.splice(_.findIndex($scope.players, function(p){
+        return player.name === p.name
+      }), 1)
+      $scope.$apply()
+    })
+    socket.on('player-update', function(index, player) {
+      $scope.players[index] = player
+      $scope.$apply()
     })
     socket.on('word', function (err, word, score) {
       if(!err) {
@@ -77,7 +91,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     }
     $scope.guess = function () {
       if(!$scope.input.word) return
-      console.log('word', $scope.input.word)
+      //console.log('word', $scope.input.word)
       socket.emit('word', $scope.input.word)
       $scope.input.word = ''
     }
