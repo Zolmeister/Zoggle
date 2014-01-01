@@ -22,8 +22,13 @@ a {
 }
 .center-score {
   float: left;
-  padding: 0 2%;
-  font-size: 1.5em;
+  padding: 0 10% 0 2%;
+  font-size: 2em;
+}
+@media screen and (max-width: 600px) {
+  .center-score {
+    font-size: 1.2em;
+  }
 }
 .time {
   float: right;
@@ -48,10 +53,10 @@ a {
   line-height: 126%;
   border-radius: 5px;
   position: relative;
+  -webkit-transition: -webkit-transform 0.1s;
 }
 .letter.selected {
   background: #fff;
-  -webkit-transition: -webkit-transform 0.1s;
   -webkit-transform: scale(1.1) rotate(2deg);
 }
 .letter-select-box {
@@ -120,7 +125,12 @@ a {
   height: 100px;
 }
 .name-overlay-center:before {
-  content:'Name: ';
+  content:'Name';
+  font-size: 2em;
+}
+.name-used {
+  color: #d37201;
+  font-size: 1em;
 }
 .name-leave {
   position: absolute;
