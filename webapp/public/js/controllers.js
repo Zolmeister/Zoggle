@@ -142,8 +142,9 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
 
     function timer() {
       setTimeout(timer, 53)
+      console.log($scope.timeDelta)      
       $scope.$apply(function () {
-        var now = Date.now() + $scope.timeDelta
+        var now = Date.now() - $scope.timeDelta
         var time = $scope.timeEnd - now
         if (time < 0) {
           time = $scope.timeNext - now
