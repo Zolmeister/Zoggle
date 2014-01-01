@@ -98,8 +98,8 @@ var GAME = {
   gameOver: false
 }
 
-var twoMins = 1000 * 60 * 2; // in ms
-var twentySeconds = 1000 * 20;
+var twoMins = 5000 //1000 * 60 * 2; // in ms
+var twentySeconds = 5000; //1000 * 20;
 (function newGame() {
   setTimeout(function(){
     if(!GAME.players.length) return newGame()

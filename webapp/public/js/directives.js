@@ -63,6 +63,11 @@ angular.module('zoggle.directives', [])
     
     $($window).bind('resize', cachePos)
     $scope.$watch(function(){ return $el.width() }, cachePos)
+    $scope.$watch('board', function() {
+      $timeout(function() {
+        $timeout(cachePos, 0)
+      }, 0)
+    })
     
     $rootScope.$on('boardload', function(){
       $timeout(function() {
