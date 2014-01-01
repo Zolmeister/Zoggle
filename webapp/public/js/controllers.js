@@ -135,6 +135,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
         } else {
           $scope.gameOVer = false
         }
+        time = Math.max(time, 0)
         $scope.timeLeft = Math.floor(time/1000)
         var ms = zeroPad(Math.floor(time % 1000 / 10))
         time /= 1000
