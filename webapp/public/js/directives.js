@@ -71,6 +71,11 @@ angular.module('zoggle.directives', [])
         $timeout(cachePos, 0)
       }, 0)
     })
+    
+    // seriously...
+    $timeout(cachePos, 500)
+    $timeout(cachePos, 1000)
+    $timeout(cachePos, 5000)
 
     function collide(x1, y1, w1, h1, x2, y2, w2, h2) {
       if (y1 + h1 < y2 || y1 > y2 + h2 || x1 + w1 < x2 || x1 > x2 + w2) return false;
