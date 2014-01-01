@@ -44,7 +44,6 @@ angular.module('zoggle.directives', [])
   .directive('catcher', function ($window, $timeout, $rootScope) {
   return function ($scope, $el, attrs) {
     var positions = [];
-
     function cachePos() {
       var targets = $el.parent().find('.' + attrs.targets)
       positions = []
@@ -78,7 +77,7 @@ angular.module('zoggle.directives', [])
       return true
     }
 
-    var capturing = false
+    $scope.isSelecting.mouse = false
     var selected = [];
 
     function select(e) {
@@ -102,17 +101,17 @@ angular.module('zoggle.directives', [])
       $scope.select(selected)
     }
     $el.bind('mousedown touchstart', function (e) {
-      capturing = true
+      $scope.isSelecting.mouse = true
       selected = []
       select(e)
     })
     $el.bind('mousemove touchmove', function (e) {
-      if (capturing) {
+      if ($scope.isSelecting.mouse) {
         select(e)
       }
     })
     $($window).bind('mouseup touchend', function (e) {
-      capturing = false
+      $scope.isSelecting.mouse = false
       $scope.guess()
       selected = []
       $scope.select(selected)

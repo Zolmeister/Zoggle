@@ -20,6 +20,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
     $scope.gameOver = false
     $scope.score = 0
     $scope.setName = false
+    $scope.isSelecting = {mouse: false}
     $scope.isMobile = checkMobile()
     $scope.selected = []
     $scope.select = function(arr) {
@@ -89,6 +90,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       })
     }
     $scope.$watch('input.word', function() {
+      if($scope.isSelecting.mouse) return
       if(!$scope.board.length || !$scope.input.word.length) return $scope.selected = []
       
       // only run on Q if u is present
