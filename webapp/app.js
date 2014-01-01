@@ -105,6 +105,17 @@ var GAME = {
 
 var twoMins = 1000 * 60 * 2; // in ms
 var twentySeconds = 1000 * 20;
+var boardQueue = []
+function goodBoard() {
+  do {
+    var board = boggle.generate()
+    var solutions = boggle(board)
+  } while(solutions.length < 100)
+  return {board: board, solutions: solutions}
+}
+for(var i=0;i<3;i++) {
+  boardQueue.push(goodBoard())
+}
 (function newGame() {
   setTimeout(function(){
     if(!GAME.players.length) return newGame()
@@ -117,18 +128,21 @@ var twentySeconds = 1000 * 20;
     //GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
     io.sockets.emit('won', GAME.won)
   }, twoMins)
-  
-  GAME.won = []
-  GAME.board = boggle.generate()
   GAME.timeStart = Date.now()
   GAME.timeEnd = Date.now() + twoMins
   GAME.time = Date.now()
   GAME.timeNext = GAME.timeEnd + twentySeconds
-  GAME.__proto__.solutions = boggle(GAME.board)
+  GAME.won = []
+  var nextBoard = boardQueue.pop()
+  GAME.board = nextBoard.board
+  GAME.__proto__.solutions = nextBoard.solutions
   GAME.gameOver = false
   _.each(GAME.players, function(player){
     player.words = []
     player.score = 0
   })
   io.sockets.emit('game', GAME)
+  setTimeout(function(){
+    boardQueue.push(goodBoard())
+  }, 1000 * 30)
 })()
