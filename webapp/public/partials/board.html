@@ -7,7 +7,7 @@
 <div class='current-word'>{{input.word || "&nbsp;"}}</div>
 
 <div class='board-container' square noscroll>
-  <div class='board noselect fade' dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
+  <div class='board noselect fade' square dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
     <div class='letter' ng-repeat='letter in board track by $index' ng-class='{selected: selected.indexOf($index) != -1, "word-success":wordSuccess === true, "word-fail": wordSuccess === "fail", "word-used": wordSuccess === "used"}' boardload>{{letter}}
       <div class='letter-select-box'></div>
     </div>
