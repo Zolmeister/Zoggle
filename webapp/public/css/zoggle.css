@@ -56,10 +56,16 @@ a {
   border-radius: 5px;
   position: relative;
   -webkit-transition: -webkit-transform 0.1s, color 0.4s;
+  -moz-transition: -moz-transform 0.1s, color 0.4s;
+  -o-transition: -o-transform 0.1s, color 0.4s;
+  transition: transform 0.1s, color 0.4s;
 }
 .letter.selected {
   background: #fff;
   -webkit-transform: scale(1.1) rotate(2deg);
+  -moz-transform: scale(1.1) rotate(2deg);
+  -o-transform: scale(1.1) rotate(2deg);
+  transform: scale(1.1) rotate(2deg);
 }
 .letter-select-box {
   width: 70%;
@@ -88,6 +94,9 @@ a {
 }
 .word-success {
   -webkit-animation: green 1s;
+  -moz-animation: green 1s;
+  -o-animation: green 1s;
+  animation: green 1s;
 }
 @-webkit-keyframes green {
   from {
@@ -97,8 +106,35 @@ a {
     color:#000;
   }
 }
+@-moz-keyframes green {
+  from {
+    color:#006500;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes green {
+  from {
+    color:#006500;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes green {
+  from {
+    color:#006500;
+  }
+  to {
+    color:#000;
+  }
+}
 .word-fail {
   -webkit-animation: red 1s;
+  -moz-animation: red 1s;
+  -o-animation: red 1s;
+  animation: red 1s;
 }
 @-webkit-keyframes red {
   from {
@@ -108,10 +144,61 @@ a {
     color:#000;
   }
 }
+@-moz-keyframes red {
+  from {
+    color:#650000;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes red {
+  from {
+    color:#650000;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes red {
+  from {
+    color:#650000;
+  }
+  to {
+    color:#000;
+  }
+}
 .word-used {
   -webkit-animation: yellow 1s;
+  -moz-animation: yellow 1s;
+  -o-animation: yellow 1s;
+  animation: yellow 1s;
 }
 @-webkit-keyframes yellow {
+  from {
+    color:#656500;
+  }
+  to {
+    color:#000;
+  }
+}
+@-moz-keyframes yellow {
+  from {
+    color:#656500;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes yellow {
+  from {
+    color:#656500;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes yellow {
   from {
     color:#656500;
   }
