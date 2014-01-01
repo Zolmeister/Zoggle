@@ -208,3 +208,27 @@ a {
 .player-inline:after {
   content:' |'
 }
+
+.winning-words {
+  position: absolute;
+}
+.board-container {
+  position:relative;
+}
+.board.ng-hide-add, .board.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+ 
+.board.ng-hide-add.ng-hide-add-active,
+.board.ng-hide-remove {
+  opacity:0;
+}
+ 
+.board.ng-hide-add,
+.board.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
