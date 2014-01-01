@@ -52,7 +52,7 @@ a {
   user-select: none;
 }
 .center-column {
-  max-width: 600px;
+  max-width: 520px;
   margin: 0 auto;
 }
 .board-overlay {

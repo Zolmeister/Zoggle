@@ -96,8 +96,8 @@ var GAME = {
   solutions: []
 }
 
-var twoMins = 100000000 //1000*5; //1000 * 60 * 2; // in ms
-var twentySeconds = 1000*5;
+var twoMins = 1000 * 60 * 2; // in ms
+var twentySeconds = 1000 * 20;
 (function newGame() {
   setTimeout(function(){
     setTimeout(newGame, twentySeconds)

@@ -4,23 +4,25 @@
 
 
 angular.module('zoggle.directives', [])
-  .directive('square', function ($window) {
+  .directive('square', function ($window, $timeout) {
   return function ($scope, $el, attrs) {
     function setHeight() {
       $el.css('height', $el.width())
     }
     $($window).bind('resize', setHeight)
-    setHeight()
+    $scope.$watch(function(){ return $el.width() }, setHeight)
   }
 })
-  .directive('dynamicfont', function ($window) {
-
+  .directive('dynamicfont', function ($window, $timeout) {
   return function ($scope, $el, attrs) {
     function setFont() {
       $el.css('font-size', $el.width() / attrs.dynamicfont)
     }
     $($window).bind('resize', setFont)
-    setFont()
+    /*$scope.$evalAsync(setFont)
+    $scope.$watch('board', setFont, true)
+    $scope.$on('$viewContentLoaded', setFont)*/
+    $scope.$watch(function(){ return $el.width() }, setFont)
   }
 })
   .directive('noscroll', function ($window) {
@@ -51,9 +53,7 @@ angular.module('zoggle.directives', [])
         })
       })
     }
-    $timeout(function () {
-      $timeout(cachePos, 0)
-    }, 0)
+    $scope.$evalAsync(cachePos)
     $($window).bind('resize', cachePos)
 
     function collide(x1, y1, w1, h1, x2, y2, w2, h2) {
@@ -94,7 +94,7 @@ angular.module('zoggle.directives', [])
         select(e)
       }
     })
-    $el.bind('mouseup touchend', function (e) {
+    $($window).bind('mouseup touchend', function (e) {
       capturing = false
       $scope.guess()
       selected = []

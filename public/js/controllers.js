@@ -24,7 +24,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
     $scope.selected = []
     $scope.select = function(arr) {
       angular.copy(arr, $scope.selected)
-      $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('')
+      $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
     }
 
     var socket = io.connect();
@@ -35,6 +35,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
         $scope[key] = GAME[key]
       }
       $scope.words = []
+      $scope.$apply()
     })
     socket.on('name', function (name) {
       if (!$scope.name) {
@@ -47,9 +48,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
     })
     socket.on('players', function (players) {
       console.log('players', players)
-      $scope.$apply(function () {
-        $scope.players = players
-      })
+      angular.copy(players, $scope.players)
     })
     socket.on('word', function (word, score) {
       $scope.words.unshift(word)
@@ -73,6 +72,9 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       $scope.setName = true
     }
     $scope.commitName = function () {
+      
+      // name did not change
+      if($scope.name === localStorage.name) return
       $scope.name = $scope.name.substr(0, 18)
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
