@@ -4,7 +4,7 @@
 <div class='time'>
   <span class='next-game-text' ng-show='gameOver'>Next game in:</span> {{timer}}</div>
 <div style='clear: both'></div>
-<div class='current-word'>{{input.word || "&nbsp;"}}</div>
+<div class='current-word' >{{ !gameOver && input.word || "&nbsp;"}}</div>
 
 <div class='board-container' square>
   <div class='board noselect fade' noscroll square dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
@@ -16,7 +16,7 @@
   
   <div class='winning-words' square ng-show='gameOver'>
     <h1>Winning Words</h1>
-    <div class='winning-word' ng-repeat='word in won track by $index'>{{word}}</div>
+    <div class='winning-word' ng-repeat='word in won'>{{word}}</div>
     <div class='countdown' ng-show='gameOver && timeLeft <= 5 '>{{timeLeft}}</div>
   </div>
 </div>

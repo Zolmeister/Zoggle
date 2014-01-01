@@ -71,7 +71,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     })
     socket.on('word', function (err, word, score) {
       if(!err) {
-        $scope.words.unshift(word)
+        $scope.words.push(word)
         $scope.score = score
         $scope.wordSuccess = true
       } else {
@@ -142,7 +142,6 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
 
     function timer() {
       setTimeout(timer, 53)
-      console.log($scope.timeDelta)      
       $scope.$apply(function () {
         var now = Date.now() - $scope.timeDelta
         var time = $scope.timeEnd - now
