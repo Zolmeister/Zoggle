@@ -1,4 +1,4 @@
 <div class='username' ng-if='!isMobile'><i class="fa fa-pencil" ng-click='editName()'></i> {{name}}: {{score}}</div>
-<h1 >Leaderboard</h1>
+<h1 ng-if='!isMobile'>Leaderboard</h1>
 <div class='player' ng-repeat='player in players | orderBy:"score":true' ng-class='{"player-inline": isMobile}'>{{player.name}}: {{player.score}}</div>
 <div ng-include src='"partials/share.html"' ng-if='isMobile' class='mobile-share'></div>
