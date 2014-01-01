@@ -10,6 +10,7 @@ angular.module('zoggle.directives', [])
       $el.css('height', $el.width())
     }
     $($window).bind('resize', setHeight)
+    setHeight()
     $scope.$watch(function(){ return $el.width() }, setHeight)
   }
 })
@@ -22,6 +23,7 @@ angular.module('zoggle.directives', [])
     /*$scope.$evalAsync(setFont)
     $scope.$watch('board', setFont, true)
     $scope.$on('$viewContentLoaded', setFont)*/
+    setFont()
     $scope.$watch(function(){ return $el.width() }, setFont)
   }
 })
@@ -32,16 +34,20 @@ angular.module('zoggle.directives', [])
     })
   }
 })
-  .directive('catcher', function ($window, $timeout) {
+.directive('boardload', function($rootScope){
+  return function($scope, $el, attrs) {
+    if($scope.$last) {
+      $rootScope.$emit('boardload')
+    }
+  }
+})
+  .directive('catcher', function ($window, $timeout, $rootScope) {
   return function ($scope, $el, attrs) {
-    if (!$scope.$last) return
-    $el = $('.board-overlay')
-
-    var targets = $el.parent().find('.' + attrs.targets)
-    console.log('targets', targets)
     var positions = [];
 
     function cachePos() {
+      var targets = $el.parent().find('.' + attrs.targets)
+      console.log('targets', targets)
       positions = []
       targets.each(function (i, $el) {
         $el = $($el)
@@ -52,9 +58,17 @@ angular.module('zoggle.directives', [])
           h: $el.outerHeight()
         })
       })
+      console.log(positions[0], positions[1])
     }
-    $scope.$evalAsync(cachePos)
+    
     $($window).bind('resize', cachePos)
+    $scope.$watch(function(){ return $el.width() }, cachePos)
+    
+    $rootScope.$on('boardload', function(){
+      $timeout(function() {
+        $timeout(cachePos, 0)
+      }, 0)
+    })
 
     function collide(x1, y1, w1, h1, x2, y2, w2, h2) {
       if (y1 + h1 < y2 || y1 > y2 + h2 || x1 + w1 < x2 || x1 > x2 + w2) return false;
@@ -65,8 +79,8 @@ angular.module('zoggle.directives', [])
     var selected = [];
 
     function select(e) {
-      var x = e.clientX
-      var y = e.clientY
+      var x = e.pageX
+      var y = e.pageY
       if (!y || !x) {
         x = e.originalEvent.touches[0].clientX
         y = e.originalEvent.touches[0].clientY

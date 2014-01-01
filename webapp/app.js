@@ -49,7 +49,7 @@ io.sockets.on('connection', function (socket) {
   socket.emit('name', player.name)
   socket.on('word', function(word) {
     word = word.toLowerCase()
-    if(_.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
+    if(!GAME.gameOver && _.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)
       player.score+=boggle.score(word)
       socket.emit('word', word, player.score)
@@ -57,8 +57,9 @@ io.sockets.on('connection', function (socket) {
     }
   })
   socket.on('name', function(name) {
-    var exists = !_.every(GAME.players, function(player) {
-      return player.name !== name
+    var exists = !_.every(GAME.players, function(p) {
+      if(player === p) return true
+      return p.name !== name
     })
     if(exists) return socket.emit('nameUsed', true)
     
@@ -93,15 +94,17 @@ var GAME = {
   time: 0,
   players: [],
   won: [],
-  solutions: []
+  solutions: [],
+  gameOver: false
 }
 
 var twoMins = 1000 * 60 * 2; // in ms
 var twentySeconds = 1000 * 20;
 (function newGame() {
   setTimeout(function(){
+    if(!GAME.players.length) return newGame()
     setTimeout(newGame, twentySeconds)
-    if(!GAME.players.length) return
+    GAME.gameOver = true
     GAME.won = GAME.players.reduce(function(best, player) {
       return best.score >= player.score ? best : player
     }).words
@@ -117,6 +120,7 @@ var twentySeconds = 1000 * 20;
   GAME.time = Date.now()
   GAME.timeNext = GAME.timeEnd + twentySeconds
   GAME.solutions = boggle(GAME.board)
+  GAME.gameOver = false
   _.each(GAME.players, function(player){
     player.words = []
     player.score = 0
