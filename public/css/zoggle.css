@@ -2,7 +2,7 @@
 /* light: 01f9ff */
 /* dark: 017d80 */
 body {
-  padding: 15px 30px;
+  padding: 15px;
   background: #23252e;
   color: #01ced3;
   text-align: center;
@@ -23,7 +23,7 @@ a {
 .center-score {
   float: left;
   padding: 0 2%;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .time {
   float: right;
@@ -51,6 +51,8 @@ a {
 }
 .letter.selected {
   background: #fff;
+  -webkit-transition: -webkit-transform 0.1s;
+  -webkit-transform: scale(1.1) rotate(2deg);
 }
 .letter-select-box {
   width: 70%;
@@ -94,6 +96,7 @@ a {
   border-radius: 5px;
   font-family:"Ubuntu Mono", monospace;
   outline: none;
+  font-size: 1.5em;
 }
 .share {
   text-align: center;
@@ -105,7 +108,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(50, 50, 50, .8);
+  background: rgba(50, 50, 50, 0.8);
 }
 .name-overlay-center {
   position: absolute;
@@ -118,6 +121,13 @@ a {
 }
 .name-overlay-center:before {
   content:'Name: ';
+}
+.name-leave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .winning-word {
   padding: 10px;

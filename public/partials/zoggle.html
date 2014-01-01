@@ -14,9 +14,10 @@
   <div ng-include src='"partials/leaderboard.html"'></div>
 </div>
 <div class='name-overlay' ng-show='setName'>
+  <div class='name-leave' ng-click='setName=false'></div>
   <div class='name-overlay-center'>
     <form ng-submit='commitName()'>
-      <input ng-model='name' class='name-input' maxlength='18'>
+      <input ng-model='name' class='name-input' maxlength='18' autofocus>
     </form>
     <span ng-show='nameUsed'>That name is already in use</span>
   </div>
