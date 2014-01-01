@@ -23,10 +23,82 @@ angular.module('zoggle.directives', [])
     setFont()
   }
 })
-.directive('noscroll', function($window) {
+  .directive('noscroll', function ($window) {
   return function ($scope, $el, attrs) {
-    $el.on('touchmove', function(e) {
+    $el.on('touchmove', function (e) {
       e.preventDefault()
+    })
+  }
+})
+  .directive('catcher', function ($window, $timeout) {
+  return function ($scope, $el, attrs) {
+    if (!$scope.$last) return
+    $el = $('.board-overlay')
+
+    var targets = $el.parent().find('.' + attrs.targets)
+    console.log('targets', targets)
+    var positions = [];
+
+    function cachePos() {
+      positions = []
+      targets.each(function (i, $el) {
+        $el = $($el)
+        positions.push({
+          x: $el.offset().left,
+          y: $el.offset().top,
+          w: $el.outerWidth(),
+          h: $el.outerHeight()
+        })
+      })
+    }
+    $timeout(function () {
+      $timeout(cachePos, 0)
+    }, 0)
+    $($window).bind('resize', cachePos)
+
+    function collide(x1, y1, w1, h1, x2, y2, w2, h2) {
+      if (y1 + h1 < y2 || y1 > y2 + h2 || x1 + w1 < x2 || x1 > x2 + w2) return false;
+      return true
+    }
+
+    var capturing = false
+    var selected = [];
+
+    function select(e) {
+      var x = e.clientX
+      var y = e.clientY
+      if (!y || !x) {
+        x = e.originalEvent.touches[0].clientX
+        y = e.originalEvent.touches[0].clientY
+      }
+      
+      for (var i = 0, l = positions.length; i < l; i++) {
+        var p = positions[i]
+        if (collide(x, y, 0, 0, p.x, p.y, p.w, p.h)) {
+          if (!_.contains(selected, i)) {
+            selected.push(i)
+          }
+          break
+        }
+      }
+
+      $scope.select(selected)
+    }
+    $el.bind('mousedown touchstart', function (e) {
+      capturing = true
+      selected = []
+      select(e)
+    })
+    $el.bind('mousemove touchmove', function (e) {
+      if (capturing) {
+        select(e)
+      }
+    })
+    $el.bind('mouseup touchend', function (e) {
+      capturing = false
+      $scope.guess()
+      selected = []
+      $scope.select(selected)
     })
   }
 })
