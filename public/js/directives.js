@@ -47,7 +47,6 @@ angular.module('zoggle.directives', [])
 
     function cachePos() {
       var targets = $el.parent().find('.' + attrs.targets)
-      console.log('targets', targets)
       positions = []
       targets.each(function (i, $el) {
         $el = $($el)
@@ -58,7 +57,6 @@ angular.module('zoggle.directives', [])
           h: $el.outerHeight()
         })
       })
-      console.log(positions[0], positions[1])
     }
     
     $($window).bind('resize', cachePos)

@@ -76,6 +76,30 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       localStorage.name = $scope.name
       socket.emit('name', $scope.name)
     }
+    function depthFirstSearch(grid, word, pos, index, past) {
+      index = index || 0
+      past = past || []
+      if(!word[index]) return past
+      var currentLetter = grid[pos] === 'Qu' ? 'Q' : grid[pos]
+      if(pos < 0 || pos > grid.length || _.contains(past, pos) || word[index] !== currentLetter) return []
+      
+      var dirs = [-5, -4, -3, -1, 1, 3, 4, 5]
+      return _.map(dirs, function(dir) {
+        return depthFirstSearch(grid, word, pos+dir, index+1, past.concat(pos))
+      })
+    }
+    $scope.$watch('input.word', function() {
+      if(!$scope.board.length || !$scope.input.word.length) return $scope.selected = []
+      
+      // only run on Q if u is present
+      if($scope.input.word.length < 2 && $scope.input.word[0].toUpperCase() === 'Q') return
+
+      var res = []
+      for(var pos=0, l=$scope.board.length; pos<l; pos++) {
+        res = res.concat(depthFirstSearch($scope.board, $scope.input.word.toUpperCase().replace('QU', 'Q'), pos))
+      }
+      $scope.selected = _.uniq(_.flatten(res))
+    })
 
     function zeroPad(number) {
       return number < 10 ? '0' + number : number
