@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('zoggle.controllers', []).
-controller('MainCtrl', ['$scope', 'checkMobile',
+controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
 
-  function ($scope, checkMobile) {
+  function ($scope, checkMobile, $timeout) {
     $scope.words = []
     $scope.board = []
     $scope.timeStart = 0
@@ -25,7 +25,9 @@ controller('MainCtrl', ['$scope', 'checkMobile',
     $scope.selected = []
     $scope.select = function(arr) {
       angular.copy(arr, $scope.selected)
-      $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
+      if(arr.length) {
+        $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
+      }
     }
 
     var socket = io.connect();
@@ -51,9 +53,18 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       console.log('players', players)
       angular.copy(players, $scope.players)
     })
-    socket.on('word', function (word, score) {
-      $scope.words.unshift(word)
-      $scope.score = score
+    socket.on('word', function (err, word, score) {
+      if(!err) {
+        $scope.words.unshift(word)
+        $scope.score = score
+        $scope.wordSuccess = true
+      } else {
+        $scope.wordSuccess = err
+      }
+      
+      $timeout(function() {
+        $scope.wordSuccess = null
+      }, 500)
     })
     socket.on('nameUsed', function (used) {
       $scope.nameUsed = used
@@ -65,6 +76,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
       socket.emit('name', $scope.name)
     }
     $scope.guess = function () {
+      if(!$scope.input.word) return
       console.log('word', $scope.input.word)
       socket.emit('word', $scope.input.word)
       $scope.input.word = ''
@@ -129,6 +141,7 @@ controller('MainCtrl', ['$scope', 'checkMobile',
         time /= 60
         var min = zeroPad(Math.floor(time % 60))
         $scope.timer = min + ':' + sec + ':' + ms
+        $scope.timeLeft = time/1000
       })
     }
     setTimeout(timer, 53)

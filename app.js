@@ -52,8 +52,12 @@ io.sockets.on('connection', function (socket) {
     if(!GAME.gameOver && _.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)
       player.score+=boggle.score(word)
-      socket.emit('word', word, player.score)
+      socket.emit('word', null, word, player.score)
       io.sockets.emit('players', GAME.players)
+    } else if (!GAME.gameOver && _.contains(GAME.solutions, word)){
+      socket.emit('word', 'used')
+    } else {
+      socket.emit('word', 'fail')
     }
   })
   socket.on('name', function(name) {
@@ -98,7 +102,7 @@ var GAME = {
   gameOver: false
 }
 
-var twoMins = 1000 * 60 * 60 //1000 * 60 * 2; // in ms
+var twoMins = 5000 //1000 * 60 * 2; // in ms
 var twentySeconds = 5000; //1000 * 20;
 (function newGame() {
   setTimeout(function(){
