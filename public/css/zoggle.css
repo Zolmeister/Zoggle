@@ -33,9 +33,6 @@ a {
 .next-game-text {
   font-size: 0.5em;
 }
-@media screen and (orientation:portrait) {
-
-}
 .current-word {
   font-size: 50px;
   text-align: center;
@@ -51,6 +48,16 @@ a {
   line-height: 126%;
   border-radius: 5px;
   position: relative;
+}
+.letter.selected {
+  background: #fff;
+}
+.letter-select-box {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
 }
 .board {
   text-align: center;
@@ -126,16 +133,6 @@ a {
 }
 .mobile-share {
   padding: 20px;
-}
-.letter.selected {
-  background: #fff;
-}
-.letter-select-box {
-  width: 70%;
-  height: 70%;
-  position: absolute;
-  top: 15%;
-  left: 15%;
 }
 .player-inline {
   display: inline-block;
