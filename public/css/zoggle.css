@@ -22,6 +22,13 @@ a {
   font-size: 30px;
   margin: 2%;
 }
+.small-word {
+  font-size: inherit;
+}
+.small-title {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
 .center-score {
   float: left;
   padding: 0 10% 0 2%;
