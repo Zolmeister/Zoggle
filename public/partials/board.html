@@ -4,7 +4,7 @@
 <div class='time'>
   <span class='next-game-text' ng-show='gameOver'>Next game in:</span> {{timer}}</div>
 <div style='clear: both'></div>
-<div class='current-word' >{{ !gameOver && input.word || "&nbsp;"}}</div>
+<div class='current-word' ng-if='!isMobile'>{{ !gameOver && input.word || "&nbsp;"}}</div>
 
 <div class='board-container' square>
   <div class='board noselect fade' noscroll square dynamicfont=6 ng-show='!gameOver' ng-mouseup='mouseUp()'>
