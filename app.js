@@ -118,8 +118,8 @@ var timeInGame = 1000 * 60 * 2; // 2 min
 var timeBetweenGames = 1000 * 15; // 15s
 
 if(process.env.NODE_ENV !== 'production') {
-  timeInGame = 50000
-  timeBetweenGames = 5000
+  timeInGame = 5000
+  timeBetweenGames = 500000
 }
 
 function goodBoard() {
@@ -129,6 +129,7 @@ function goodBoard() {
   } while(solutions.length < 100)
   return {board: board, solutions: solutions}
 }
+
 var boardQueue = []
 boardQueue.push(goodBoard());
 

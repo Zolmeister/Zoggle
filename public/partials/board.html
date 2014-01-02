@@ -16,7 +16,7 @@
   
   <div class='winning-words' square ng-show='gameOver'>
     <h1>Winning Words</h1>
-    <div class='winning-word' ng-repeat='word in won'>{{word}}</div>
+    <div class='winning-word' ng-repeat='word in won' ng-class='{"winning-word-unused": words.indexOf(word) === -1}'>{{word}}</div>
     <div class='countdown' ng-show='gameOver && timeLeft <= 5 '>{{timeLeft}}</div>
   </div>
 </div>
