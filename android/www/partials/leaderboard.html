@@ -1,0 +1,3 @@
+<div class='username' ng-if='!isMobile'><i class="fa fa-pencil" ng-click='editName()'></i> {{name}}: {{score}}</div>
+<h1 ng-class='{"small-title": isMobile}'>Leaderboard</h1>
+<div class='player' ng-repeat='player in players | orderBy:"score":true'>{{player.name}}: {{player.score}}</div>

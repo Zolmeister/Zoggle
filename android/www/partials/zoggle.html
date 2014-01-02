@@ -1,0 +1,39 @@
+<div class='pure-g' ng-if='!isMobile'>
+  <div class='pure-u-1-5'>
+    <div ng-include src='"partials/wordlist.html"'></div>
+  </div>
+  <div class='pure-u-3-5'>
+    <div ng-include src='"partials/board.html"' class='center-column'></div>
+  </div>
+  <div class='pure-u-1-5'>
+    <div ng-include src='"partials/leaderboard.html"'></div>
+  </div>
+</div>
+<div ng-if='isMobile'>
+  <div ng-include src='"partials/board.html"'></div>
+  <div class='pure-g'>
+    <div class='pure-u-1-2'>
+      <div ng-include src='"partials/wordlist.html"'></div>
+    </div>
+    <div class='pure-u-1-2'>
+      <div ng-include src='"partials/leaderboard.html"'></div>
+    </div>
+  </div>
+  <div ng-include src='"partials/share.html"' class='mobile-share'></div>
+</div>
+<div ng-include src='"partials/about.html"'></div>
+<div class='name-overlay' ng-show='setName'>
+  <div class='name-leave' ng-click='setName=false'></div>
+  <div class='name-overlay-center name-text'>
+    <form ng-submit='commitName()'>
+      <input ng-model='name' class='name-input' maxlength='18' autofocus>
+    </form>
+    <span ng-show='nameUsed' class='name-used'>That name is already in use</span>
+  </div>
+</div>
+<div class='name-overlay' ng-show='input.sharing'>
+  <div class='name-leave' ng-click='input.sharing=false'></div>
+  <div class='name-overlay-center share-popup-text'>
+    <div ng-include src='"partials/share-popup.html"'></div>
+  </div>
+</div>

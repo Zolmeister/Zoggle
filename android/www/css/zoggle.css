@@ -1,0 +1,353 @@
+/* regular: 01ced3 */
+
+/* light: 01f9ff */
+
+/* dark: 017d80 */
+ body {
+  padding: 15px;
+  background: #23252e;
+  color: #01ced3;
+  text-align: center;
+}
+body, .pure-g[class *="pure-u"], .pure-g-r[class *="pure-u"] {
+  font-family:"Ubuntu Mono", monospace;
+}
+a {
+  color: #01ced3;
+}
+* {
+  font-family:"Ubuntu Mono", monospace;
+}
+.word {
+  font-size: 30px;
+  margin: 2%;
+  display: inline-block;
+}
+.small-word {
+  font-size: inherit;
+}
+.small-title {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
+.center-score {
+  float: left;
+  padding: 0 10% 0 2%;
+  font-size: 2em;
+}
+@media screen and (max-width: 600px) {
+  .center-score {
+    font-size: 1.2em;
+  }
+}
+.time {
+  float: right;
+  padding-right: 2%;
+  font-size: 2em;
+}
+.next-game-text {
+  font-size: 0.5em;
+}
+.current-word {
+  font-size: 50px;
+  text-align: center;
+}
+.letter {
+  width: 22%;
+  height: 22%;
+  margin: 1.5%;
+  float: left;
+  background: #01ced3;
+  color: #000;
+  font-weight: bold;
+  vertical-align: top;
+  line-height: 126%;
+  border-radius: 5px;
+  position: relative;
+  -webkit-transition: -webkit-transform 0.1s, color 0.4s;
+  -moz-transition: -moz-transform 0.1s, color 0.4s;
+  -o-transition: -o-transform 0.1s, color 0.4s;
+  transition: transform 0.1s, color 0.4s;
+}
+.letter.selected {
+  background: #fff;
+  -webkit-transform: scale(1.1) rotate(2deg);
+  -moz-transform: scale(1.1) rotate(2deg);
+  -o-transform: scale(1.1) rotate(2deg);
+  transform: scale(1.1) rotate(2deg);
+}
+.letter-select-box {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+}
+.board {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.center-column {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.word-success {
+  -webkit-animation: green 1s;
+  -moz-animation: green 1s;
+  -o-animation: green 1s;
+  animation: green 1s;
+}
+@-webkit-keyframes green {
+  from {
+    color:#090;
+  }
+  to {
+    color:#000;
+  }
+}
+@-moz-keyframes green {
+  from {
+    color:#090;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes green {
+  from {
+    color:#090;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes green {
+  from {
+    color:#090;
+  }
+  to {
+    color:#000;
+  }
+}
+.word-fail {
+  -webkit-animation: red 1s;
+  -moz-animation: red 1s;
+  -o-animation: red 1s;
+  animation: red 1s;
+}
+@-webkit-keyframes red {
+  from {
+    color:#900;
+  }
+  to {
+    color:#000;
+  }
+}
+@-moz-keyframes red {
+  from {
+    color:#900;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes red {
+  from {
+    color:#900;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes red {
+  from {
+    color:#900;
+  }
+  to {
+    color:#000;
+  }
+}
+.word-used {
+  -webkit-animation: yellow 1s;
+  -moz-animation: yellow 1s;
+  -o-animation: yellow 1s;
+  animation: yellow 1s;
+}
+@-webkit-keyframes yellow {
+  from {
+    color:#990;
+  }
+  to {
+    color:#000;
+  }
+}
+@-moz-keyframes yellow {
+  from {
+    color:#990;
+  }
+  to {
+    color:#000;
+  }
+}
+@-o-keyframes yellow {
+  from {
+    color:#990;
+  }
+  to {
+    color:#000;
+  }
+}
+@keyframes yellow {
+  from {
+    color:#990;
+  }
+  to {
+    color:#000;
+  }
+}
+.board-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.countdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -0.5em 0 0 -0.5em;
+  font-size: 20em;
+  width: 1em;
+  color: #d30000;
+}
+.keyboard-input-wrapper {
+  margin: 2%;
+}
+.keyboard-input, .name-input {
+  text-align: center;
+  background: rgba(35, 37, 46, 0.8);
+  border: 2px solid #d37201;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  color: #01ced3;
+  border-radius: 5px;
+  font-family:"Ubuntu Mono", monospace;
+  outline: none;
+  font-size: 1.5em;
+}
+.share {
+  text-align: center;
+  cursor: pointer;
+}
+.name-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(50, 50, 50, 0.8);
+}
+.name-overlay-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: -50px;
+  width: 250px;
+  height: 100px;
+}
+.name-text:before {
+  content:'Name';
+  font-size: 2em;
+}
+.share-popup-text:before {
+  content:'Share';
+  font-size: 2em;
+}
+.name-used {
+  color: #d37201;
+  font-size: 1em;
+}
+.name-leave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.winning-word {
+  padding: 10px;
+  font-size: 1.5em;
+  display: inline-block;
+}
+.winning-word-unused {
+  text-decoration: underline;
+}
+.share-text {
+  cursor: pointer;
+  text-decoration: none;
+}
+.share-button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.mobile-share {
+  padding: 20px;
+}
+.player-inline {
+  display: inline-block;
+  padding: 5px;
+}
+.player-inline:after {
+  content:' |'
+}
+.footer {
+  font-size: .9em;
+  padding: 5px;
+}
+
+/* fading transition */
+.board-container {
+  position:relative;
+}
+
+.fade.ng-enter, .fade.ng-move {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.fade.ng-hide-add, .fade.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+ 
+.fade.ng-hide-add.ng-hide-add-active,
+.fade.ng-hide-remove,
+.fade.ng-leave {
+  opacity:0;
+}
+ 
+.fade.ng-hide-add,
+.fade.ng-hide-remove.ng-hide-remove-active,
+.fade.ng-enter.ng-enter-active,
+.fade.ng-move.ng-move-active {
+  opacity:1;
+}
