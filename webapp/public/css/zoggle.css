@@ -21,6 +21,7 @@ a {
 .word {
   font-size: 30px;
   margin: 2%;
+  display: inline-block;
 }
 .small-word {
   font-size: inherit;
@@ -288,7 +289,11 @@ a {
 }
 .winning-word {
   padding: 10px;
+  font-size: 1.5em;
   display: inline-block;
+}
+.winning-word-unused {
+  text-decoration: underline;
 }
 .share-text {
   cursor: pointer;
