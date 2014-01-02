@@ -97,6 +97,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
         } else {
           $scope.wordSuccess = true
           $scope.words.push(word)
+          socket.emit('word', word)
         }
       } else {
         $scope.wordSuccess = 'fail'
