@@ -251,7 +251,7 @@ a {
   cursor: pointer;
 }
 .name-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -267,8 +267,12 @@ a {
   width: 250px;
   height: 100px;
 }
-.name-overlay-center:before {
+.name-text:before {
   content:'Name';
+  font-size: 2em;
+}
+.share-popup-text:before {
+  content:'Share';
   font-size: 2em;
 }
 .name-used {

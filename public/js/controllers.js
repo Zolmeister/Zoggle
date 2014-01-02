@@ -16,7 +16,8 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     $scope.players = []
     $scope.won = []
     $scope.input = {
-      word: ''
+      word: '',
+      sharing: false
     }
     $scope.gameOver = false
     $scope.score = 0
