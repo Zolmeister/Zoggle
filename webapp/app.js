@@ -36,6 +36,17 @@ app.get('/users', user.list);
 var server = http.createServer(app)
 var io = require('socket.io').listen(server);
 io.set('log level', 1)
+io.configure('production', function() {
+  io.enable('browser client minification');  // send minified client
+  io.enable('browser client etag');          // apply etag caching logic based on version number
+  io.enable('browser client gzip');          // gzip the file
+  io.set('transports', [
+      'websocket'
+    , 'htmlfile'
+    , 'xhr-polling'
+    , 'jsonp-polling'
+  ]);
+})
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
