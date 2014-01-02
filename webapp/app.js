@@ -105,11 +105,12 @@ var GAME = {
 
 var timeInGame = 1000 * 60 * 2; // 2 min
 var timeBetweenGames = 1000 * 15; // 15s
+
 if(process.env.NODE_ENV !== 'production') {
   timeInGame = 5000
   timeBetweenGames = 5000
 }
-var boardQueue = []
+
 function goodBoard() {
   do {
     var board = boggle.generate()
@@ -117,9 +118,9 @@ function goodBoard() {
   } while(solutions.length < 100)
   return {board: board, solutions: solutions}
 }
-for(var i=0;i<3;i++) {
-  boardQueue.push(goodBoard())
-}
+var boardQueue = []
+boardQueue.push(goodBoard());
+
 (function newGame() {
   setTimeout(function(){
     if(!GAME.players.length) return newGame()
@@ -148,7 +149,5 @@ for(var i=0;i<3;i++) {
     player.score = 0
   })
   io.sockets.emit('game', GAME)
-  setTimeout(function(){
-    boardQueue.push(goodBoard())
-  }, 1000 * 30)
+  boardQueue.push(goodBoard())
 })()
