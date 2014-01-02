@@ -93,17 +93,71 @@ angular.module('zoggle.directives', [])
         y = e.originalEvent.touches[0].clientY
       }
       
+      var added = false
       for (var i = 0, l = positions.length; i < l; i++) {
         var p = positions[i]
         if (collide(x, y, 0, 0, p.x, p.y, p.w, p.h)) {
           if (!_.contains(selected, i)) {
+            added = true
             selected.push(i)
           }
           break
         }
       }
-
-      $scope.select(selected)
+      
+      function touching(a, b) {
+        var dirs = _.filter([-5, -4, -3, -1, 1, 3, 4, 5], function(dir) {
+          var col = a%4
+          if (col === 0 && (dir === -1 || dir === 3 || dir === -5)) return false
+          if (col === 3 && (dir === -3 || dir === 1 || dir === 5)) return false
+          return true
+        })
+        
+        for(var i=0, l=dirs.length; i < l; i++) {
+          if (a+dirs[i] === b) return true
+        }
+        
+        return false
+      }
+      
+      if(added) {
+        var len = selected.length
+        if(len > 1 && !touching(selected[len-1], selected[len-2])) {
+          var start = selected[len-2]
+          var end = selected[len-1]
+          var startX = start % 4
+          var startY = Math.floor(start / 4)
+          var endX = end % 4
+          var endY = Math.floor(end / 4)
+          var last = selected.pop()
+          
+          // just in case...
+          var MAX_ITER = 100
+          while (!touching(start, end) && MAX_ITER) {
+            // interpolate position
+            if (startX < endX && startY < endY) {
+              startX += 1
+              startY += 1
+            } else if (startX > endX && startY > endY) {
+              startX -= 1
+              startY -= 1
+            } else if(startX < endX) {
+              startX += 1
+            } else if(startX > endX) {
+              startX -=1
+            } else if(startY < endY) {
+              startY += 1
+            } else {
+              startY -=1
+            }
+            start = startY * 4 + startX
+            selected.push(start)
+          }
+          selected.push(last)
+          MAX_ITER--
+        }
+        $scope.select(selected)
+      }
     }
     $el.bind('mousedown touchstart', function (e) {
       $scope.isSelecting.mouse = true
