@@ -22,6 +22,9 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res) {
+  res.redirect('/')
+})
 
 // development only
 if ('development' == app.get('env')) {
@@ -31,6 +34,7 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/public/index.html')
 });
+
 app.get('/users', user.list);
 
 var server = http.createServer(app)
