@@ -131,7 +131,7 @@ boardQueue.push(goodBoard());
     }).words
     //debug
     if(process.env.NODE_ENV !== 'production') {
-    GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
+      GAME.won = ['abc', 'def', 'asdf', 'asdfasdg', 'zxcvxzcv', 'utuytuyu', 'xxqweqe', 'piuouio', 'tyuiyuix', 'asdfasdfb', 'asdfqerewt', 'fdggjjku', 'asdfacxvsd', 'urtyuyuhjghj', 'zxczxczxcvxzcv', 'tyuiytuiyu', 'vxzcvxc']
     }
     io.sockets.emit('won', GAME.won)
   }, timeInGame)
