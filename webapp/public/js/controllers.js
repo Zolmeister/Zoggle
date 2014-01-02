@@ -49,6 +49,8 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     socket.on('name', function (name) {
       if (!$scope.name) {
         $scope.name = name
+      } else {
+        socket.emit('name', $scope.name)
       }
     })
     socket.on('won', function (winningWords) {
