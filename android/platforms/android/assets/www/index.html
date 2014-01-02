@@ -25,7 +25,12 @@
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="lib/pure-min.css">
   <link rel="stylesheet" href="css/zoggle.css"/>
-  
+  <script>
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+    navigator.splashscreen.hide();
+  }
+  </script>
   <script src="http://zoggle.zolmeister.com/socket.io/socket.io.js"></script>
   <script src='lib/jquery.js'></script>
   <script src='lib/lodash.min.js'></script>
