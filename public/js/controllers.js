@@ -25,6 +25,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     $scope.isSelecting = {mouse: false}
     $scope.isMobile = checkMobile()
     $scope.selected = []
+    $scope.solutions = []
     $scope.select = function(arr) {
       angular.copy(arr, $scope.selected)
       if(arr.length) {
@@ -72,16 +73,8 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
     })
     socket.on('word', function (err, word, score) {
       if(!err) {
-        $scope.words.push(word)
         $scope.score = score
-        $scope.wordSuccess = true
-      } else {
-        $scope.wordSuccess = err
       }
-      
-      $timeout(function() {
-        $scope.wordSuccess = null
-      }, 500)
     })
     socket.on('nameUsed', function (used) {
       $scope.nameUsed = used
@@ -93,9 +86,24 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
       socket.emit('name', $scope.name)
     }
     $scope.guess = function () {
-      if(!$scope.input.word) return
-      //console.log('word', $scope.input.word)
-      socket.emit('word', $scope.input.word)
+      var word = $scope.input.word
+      if(!word) return
+      
+      if(_.contains($scope.solutions, word)) {
+        if(_.contains($scope.words, word)) {
+          $scope.wordSuccess = 'used'
+        } else {
+          $scope.wordSuccess = true
+          $scope.words.push(word)
+        }
+      } else {
+        $scope.wordSuccess = 'fail'
+      }
+      
+      $timeout(function() {
+        $scope.wordSuccess = null
+      }, 500)
+      
       $scope.input.word = ''
     }
     $scope.editName = function () {

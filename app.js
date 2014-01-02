@@ -51,16 +51,16 @@ io.sockets.on('connection', function (socket) {
   socket.emit('players', GAME.players)
   socket.on('word', function(word) {
     word = word.toLowerCase()
-    if(!GAME.gameOver && _.contains(GAME.__proto__.solutions, word) && !_.contains(player.words, word)) {
+    if(!GAME.gameOver && _.contains(GAME.solutions, word) && !_.contains(player.words, word)) {
       player.words.push(word)
       player.score+=boggle.score(word)
       socket.emit('word', null, word, player.score)
       io.sockets.emit('player-update', GAME.players.indexOf(player), player)
-    } else if (!GAME.gameOver && _.contains(GAME.__proto__.solutions, word)){
+    } /*else if (!GAME.gameOver && _.contains(GAME.solutions, word)){
       socket.emit('word', 'used')
     } else {
       socket.emit('word', 'fail')
-    }
+    }*/
   })
   socket.on('name', function(name) {
     var exists = !_.every(GAME.players, function(p) {
@@ -142,7 +142,7 @@ boardQueue.push(goodBoard());
   GAME.won = []
   var nextBoard = boardQueue.pop()
   GAME.board = nextBoard.board
-  GAME.__proto__.solutions = nextBoard.solutions
+  GAME.solutions = nextBoard.solutions
   GAME.gameOver = false
   _.each(GAME.players, function(player){
     player.words = []
