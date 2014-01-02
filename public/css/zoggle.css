@@ -107,7 +107,7 @@ a {
 }
 @-webkit-keyframes green {
   from {
-    color:#006500;
+    color:#090;
   }
   to {
     color:#000;
@@ -115,7 +115,7 @@ a {
 }
 @-moz-keyframes green {
   from {
-    color:#006500;
+    color:#090;
   }
   to {
     color:#000;
@@ -123,7 +123,7 @@ a {
 }
 @-o-keyframes green {
   from {
-    color:#006500;
+    color:#090;
   }
   to {
     color:#000;
@@ -131,7 +131,7 @@ a {
 }
 @keyframes green {
   from {
-    color:#006500;
+    color:#090;
   }
   to {
     color:#000;
@@ -145,7 +145,7 @@ a {
 }
 @-webkit-keyframes red {
   from {
-    color:#650000;
+    color:#900;
   }
   to {
     color:#000;
@@ -153,7 +153,7 @@ a {
 }
 @-moz-keyframes red {
   from {
-    color:#650000;
+    color:#900;
   }
   to {
     color:#000;
@@ -161,7 +161,7 @@ a {
 }
 @-o-keyframes red {
   from {
-    color:#650000;
+    color:#900;
   }
   to {
     color:#000;
@@ -169,7 +169,7 @@ a {
 }
 @keyframes red {
   from {
-    color:#650000;
+    color:#900;
   }
   to {
     color:#000;
@@ -183,7 +183,7 @@ a {
 }
 @-webkit-keyframes yellow {
   from {
-    color:#656500;
+    color:#990;
   }
   to {
     color:#000;
@@ -191,7 +191,7 @@ a {
 }
 @-moz-keyframes yellow {
   from {
-    color:#656500;
+    color:#990;
   }
   to {
     color:#000;
@@ -199,7 +199,7 @@ a {
 }
 @-o-keyframes yellow {
   from {
-    color:#656500;
+    color:#990;
   }
   to {
     color:#000;
@@ -207,7 +207,7 @@ a {
 }
 @keyframes yellow {
   from {
-    color:#656500;
+    color:#990;
   }
   to {
     color:#000;
