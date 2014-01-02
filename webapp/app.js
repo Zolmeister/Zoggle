@@ -103,8 +103,12 @@ var GAME = {
   gameOver: false
 }
 
-var twoMins = 1000 * 60 * 2; // in ms
-var twentySeconds = 1000 * 15;
+var timeInGame = 1000 * 60 * 2; // 2 min
+var timeBetweenGames = 1000 * 15; // 15s
+if(process.env.NODE_ENV !== 'production') {
+  timeInGame = 5000
+  timeBetweenGames = 5000
+}
 var boardQueue = []
 function goodBoard() {
   do {
@@ -119,19 +123,21 @@ for(var i=0;i<3;i++) {
 (function newGame() {
   setTimeout(function(){
     if(!GAME.players.length) return newGame()
-    setTimeout(newGame, twentySeconds)
+    setTimeout(newGame, timeBetweenGames)
     GAME.gameOver = true
     GAME.won = GAME.players.reduce(function(best, player) {
       return best.score >= player.score ? best : player
     }).words
     //debug
-    //GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
+    if(process.env.NODE_ENV !== 'production') {
+    GAME.won = ['abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf','abc', 'dedfasdf', 'adsfcvc', 'adfdxcdfdsf', 'aaadsf']
+    }
     io.sockets.emit('won', GAME.won)
-  }, twoMins)
+  }, timeInGame)
   GAME.timeStart = Date.now()
-  GAME.timeEnd = Date.now() + twoMins
+  GAME.timeEnd = Date.now() + timeInGame
   GAME.time = Date.now()
-  GAME.timeNext = GAME.timeEnd + twentySeconds
+  GAME.timeNext = GAME.timeEnd + timeBetweenGames
   GAME.won = []
   var nextBoard = boardQueue.pop()
   GAME.board = nextBoard.board
