@@ -18,5 +18,5 @@
   },
   "scripts": {
     "postinstall": "echo postinstall time; ./node_modules/grunt/bin/grunt"
-  },
+  }
 }
