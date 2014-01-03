@@ -1,11 +1,12 @@
 /home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes.dex : \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/R$xml.class \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/R$string.class \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/R$attr.class \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/R$drawable.class \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/R.class \
-/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/BuildConfig.class \
 /home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/com/zolmeister/zoggle/Zoggle.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/R$xml.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/R$string.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/R$attr.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/R$drawable.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/R.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/BuildConfig.class \
+/home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/zolmeister/zman/zoggle/Zoggle.class \
 /home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager.class \
 /home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager$1.class \
 /home/zoli/workspace/websites/zoggle2/android/platforms/android/bin/classes/org/apache/cordova/splashscreen/SplashScreen.class \

@@ -1,3 +1,3 @@
 # view AndroidManifest.xml #generated:6
--keep class com.zolmeister.zoggle.Zoggle { <init>(...); }
+-keep class zolmeister.zman.zoggle.Zoggle { <init>(...); }
 
