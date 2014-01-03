@@ -44,6 +44,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
       // time difference between me and the server, with 50ms buffer
       $scope.timeDelta = Date.now() - $scope.time + 50
       $scope.words = []
+      $scope.score = 0
       $scope.$apply()
     })
     socket.on('name', function (name) {
