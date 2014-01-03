@@ -23,7 +23,7 @@
 </div>
 <div ng-include src='"partials/about.html"'></div>
 <div class='name-overlay' ng-show='setName'>
-  <div class='name-leave' ng-click='setName=false'></div>
+  <div class='name-leave' ng-click='commitName()'></div>
   <div class='name-overlay-center name-text'>
     <form ng-submit='commitName()'>
       <input ng-model='name' class='name-input' maxlength='18' autofocus>
