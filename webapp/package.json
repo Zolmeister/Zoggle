@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "echo postinstall time; ./node_modules/grunt/bin/grunt"
+    "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt"
   },
   "dependencies": {
     "express": "3.3.4",
