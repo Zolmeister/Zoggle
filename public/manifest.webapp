@@ -1,0 +1,16 @@
+{
+  "name": "Zoggle",
+  "description": "Zoggle, the ultimate word game!",
+  "launch_path": "/",
+  "icons": {
+    "128": "/img/icon-128.png",
+    "120": "/img/icon-120.png",
+    "90": "/img/icon-90.png",
+    "60": "/img/icon-60.png"
+  },
+  "developer": {
+    "name": "Zolmeister",
+    "url": "http://zolmeister.com"
+  },
+  "default_locale": "en"
+}
