@@ -36,6 +36,10 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/public/index.html')
 });
+app.get('/manifest.webapp', function(req, res) {
+  res.header('Content-Type', 'application/x-web-app-manifest+json')
+  res.sendfile(__dirname + '/public/manifest.webapp')
+})
 
 app.get('/users', user.list);
 
