@@ -8,7 +8,7 @@
 angular.module('zoggle.services', [])
   .factory('checkMobile', function () {
   function checkMobile() {
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i.test(navigator.userAgent.toLowerCase());
   }
   return checkMobile
 })
