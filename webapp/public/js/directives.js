@@ -6,25 +6,20 @@
 angular.module('zoggle.directives', [])
   .directive('square', function ($window, $timeout) {
   return function ($scope, $el, attrs) {
-    function setHeight() {
+    function apply() {
       $el.css('min-height', $el.width())
     }
-    $($window).bind('resize', setHeight)
-    setHeight()
-    $scope.$watch(function(){ return $el.width() }, setHeight)
+    apply()
+    $scope.$watch(function(){ return $el.width() }, apply)
   }
 })
   .directive('dynamicfont', function ($window, $timeout) {
   return function ($scope, $el, attrs) {
-    function setFont() {
+    function apply() {
       $el.css('font-size', $el.width() / attrs.dynamicfont)
     }
-    $($window).bind('resize', setFont)
-    /*$scope.$evalAsync(setFont)
-    $scope.$watch('board', setFont, true)
-    $scope.$on('$viewContentLoaded', setFont)*/
-    setFont()
-    $scope.$watch(function(){ return $el.width() }, setFont)
+    apply()
+    $scope.$watch(function(){ return $el.width() }, apply)
   }
 })
   .directive('noscroll', function ($window) {
@@ -57,10 +52,9 @@ angular.module('zoggle.directives', [])
         })
       })
     }
+    cachePos()
     
-    $($window).bind('resize', cachePos)
-    $scope.$watch(function(){ return $el.width() }, cachePos)
-    $scope.$watch('board', function() {
+    $($window).on('resize orientationchange', function() {
       $timeout(function() {
         $timeout(cachePos, 0)
       }, 0)
@@ -72,10 +66,7 @@ angular.module('zoggle.directives', [])
       }, 0)
     })
     
-    // seriously...
-    $timeout(cachePos, 500)
-    $timeout(cachePos, 1000)
-    $timeout(cachePos, 5000)
+    $scope.$watch(function(){ return $el.width() }, cachePos)
 
     function collide(x1, y1, w1, h1, x2, y2, w2, h2) {
       if (y1 + h1 < y2 || y1 > y2 + h2 || x1 + w1 < x2 || x1 > x2 + w2) return false;
