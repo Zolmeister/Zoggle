@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('zoggle.controllers', []).
-controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
+controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
 
-  function ($scope, checkMobile, $timeout) {
+  function ($scope, checkMobile, $timeout, settings) {
     $scope.words = []
     $scope.board = []
     $scope.timeStart = 0
@@ -32,8 +32,8 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout',
         $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
       }
     }
-
-    var socket = io.connect();
+    var wsUrl = settings.development ? '' : 'wss://zoggle.herokuapp.com:80'
+    var socket = io.connect(wsUrl)
     socket.on('game', function (GAME) {
       //console.log('game', GAME)
       $scope.gameOver = false

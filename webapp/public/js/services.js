@@ -12,3 +12,13 @@ angular.module('zoggle.services', [])
   }
   return checkMobile
 })
+.factory('settings', function() {
+  var development = false
+  
+  // this is a hack
+  if(window.location.hostname === 'localhost') development = true
+  
+  return {
+    development: development
+  }
+})
