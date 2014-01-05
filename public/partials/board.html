@@ -14,10 +14,10 @@
     <div class='board-overlay' catcher targets='letter-select-box'></div>
   </div>
   
-  <div class='winning-words' square ng-show='gameOver'>
+  <div class='winning-words' ng-show='gameOver'>
     <h1>Winning Words</h1>
     <div class='winning-word' ng-repeat='word in won' ng-class='{"winning-word-unused": words.indexOf(word) === -1}'>{{word}}</div>
-    <div class='countdown' ng-show='gameOver && timeLeft <= 5 '>{{timeLeft}}</div>
+    <div class='countdown' ng-show='gameOver && timeLeft <= 5 && timeLeft !== 0 '>{{timeLeft}}</div>
   </div>
 </div>
 <div class='keyboard-input-wrapper' ng-if='!isMobile' ng-show='!gameOver'>
