@@ -51,7 +51,8 @@ io.configure('production', function() {
   io.enable('browser client etag');          // apply etag caching logic based on version number
   io.enable('browser client gzip');          // gzip the file
   io.set('transports', [
-     'htmlfile'
+      'websocket'
+    , 'htmlfile'
     , 'xhr-polling'
     , 'jsonp-polling'
   ]);
