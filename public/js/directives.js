@@ -126,21 +126,11 @@ angular.module('zoggle.directives', [])
           var MAX_ITER = 100
           while (!touching(start, end) && MAX_ITER) {
             // interpolate position
-            if (startX < endX && startY < endY) {
-              startX += 1
-              startY += 1
-            } else if (startX > endX && startY > endY) {
-              startX -= 1
-              startY -= 1
-            } else if(startX < endX) {
-              startX += 1
-            } else if(startX > endX) {
-              startX -=1
-            } else if(startY < endY) {
-              startY += 1
-            } else {
-              startY -=1
-            }
+            if(startX < endX) startX++
+            if(startX > endX) startX--
+            if(startY < endY) startY++
+            if(startY > endY) startY--
+            
             start = startY * 4 + startX
             selected.push(start)
           }
