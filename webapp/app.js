@@ -155,6 +155,7 @@ boardQueue.push(goodBoard());
     if(process.env.NODE_ENV !== 'production') {
       GAME.won = ['abc', 'def', 'asdf', 'asdfasdg', 'zxcvxzcv', 'utuytuyu', 'xxqweqe', 'piuouio', 'tyuiyuix', 'asdfasdfb', 'asdfqerewt', 'fdggjjku', 'asdfacxvsd', 'urtyuyuhjghj', 'zxczxczxcvxzcv', 'tyuiytuiyu', 'vxzcvxc']
     }
+    console.log('GAME OVER: ', JSON.stringify(_.omit(GAME, 'solutions')))
     io.sockets.emit('won', GAME.won)
   }, timeInGame)
   GAME.timeStart = Date.now()
@@ -170,7 +171,7 @@ boardQueue.push(goodBoard());
     player.words = []
     player.score = 0
   })
-
+  console.log('NEW GAME: ', JSON.stringify(_.omit(GAME, 'solutions')))
   io.sockets.emit('game', GAME)
   boardQueue.push(goodBoard())
 })()
