@@ -16,8 +16,8 @@ angular.module('zoggle.services', [])
   var development = false
   
   // this is a hack
-  if(window.location.hostname === 'localhost') development = true
-  
+  if(window.location.hostname === 'localhost' || window.location.hostname.indexOf('localtunnel.me') !== -1) development = true
+
   return {
     development: development
   }

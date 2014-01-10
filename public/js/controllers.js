@@ -32,8 +32,9 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
         $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
       }
     }
-    var wsUrl = settings.development ? '' : 'wss://zoggle.herokuapp.com:80'
+    var wsUrl = settings.development ? '' : 'https://zoggle.herokuapp.com:443'
     var socket = io.connect(wsUrl)
+
     socket.on('game', function (GAME) {
       //console.log('game', GAME)
       $scope.gameOver = false
@@ -55,7 +56,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
       }
     })
     socket.on('won', function (winningWords) {
-      //console.log('words', winningWords)
+      //console.log('winning words', winningWords)
       $scope.won = winningWords
     })
     socket.on('players', function (players) {

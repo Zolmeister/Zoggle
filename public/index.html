@@ -56,7 +56,7 @@
 
     
     // load all of the dependencies asynchronously. Yes this is a hack.
-    if(window.location.hostname !== 'localhost') {
+    if(window.location.hostname !== 'localhost' && window.location.hostname.indexOf('localtunnel.me') === -1) {
       // production
       $script([
       'socket.io/socket.io.js',
