@@ -15,6 +15,6 @@
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-ngmin": "0.0.3",
     "grunt-cli": "~0.1.11",
-    "boggle": "Zolmeister/boggle"
+    "boggle": "~0.1.3"
   }
 }
