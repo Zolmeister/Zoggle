@@ -1,0 +1,8 @@
+CACHE MANIFEST
+#build 1.0.0
+
+CACHE:
+index.html
+
+NETWORK:
+*
