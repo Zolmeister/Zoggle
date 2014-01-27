@@ -29,6 +29,17 @@
   <meta name="kik-user-token" content="ag9zfmNhcmRzLW1hbmFnZXJyEQsSBFVzZXIYgICAwIHbsQoM">
   <link rel="kik-icon" href="http://zoggle.zolmeister.com/img/icon-256-160.png">
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-30570115-12', 'zolmeister.com');
+    ga('send', 'pageview');
+  
+  </script>
+    
   <style>
     [ng-cloak] {
       display: none;
@@ -64,6 +75,9 @@
       'socket.io/socket.io.js',
       'dist/lib.min.js',
       'dist/zoggle.min.js',
+        
+      // kik
+      'http://cdn.kik.com/cards/0.11.3/cards.js',
       
       // addthis
       'http://w.sharethis.com/button/buttons.js'
@@ -108,17 +122,6 @@
   
 </head>
 <body ng-cloak>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-30570115-12', 'zolmeister.com');
-  ga('send', 'pageview');
-
-</script>
-
   <div ng-view portrait></div>
 </body>
 </html>
