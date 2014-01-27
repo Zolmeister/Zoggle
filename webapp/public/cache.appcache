@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#build 1.0.3
+#build 1.0.4
 
 CACHE:
 index.html
@@ -8,17 +8,8 @@ css/font-awesome.min.css
 css/pure-min.css
 css/zoggle.css
 socket.io/socket.io.js
-lib/jquery.js
-lib/lodash.compat.js
-lib/angular/angular.js
-lib/angular/angular-route.js
-lib/angular/angular-touch.js
-lib/angular/angular-animate.js
-js/app.js
-js/services.js
-js/controllers.js
-js/filters.js
-js/directives.js
+dist/lib.min.js
+dist/zoggle.min.js
 
 http://cdn.kik.com/cards/0.11.3/cards.js
         
