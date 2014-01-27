@@ -1,8 +1,12 @@
 CACHE MANIFEST
-#build 1.0.1
+#build 1.0.3
 
 CACHE:
 index.html
+http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700
+css/font-awesome.min.css
+css/pure-min.css
+css/zoggle.css
 
 NETWORK:
 *
