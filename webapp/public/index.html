@@ -71,7 +71,7 @@
     // load all of the dependencies asynchronously. Yes this is a hack.
     if(window.location.hostname !== 'localhost' && window.location.hostname.indexOf('localtunnel.me') === -1) {
       // production
-      $script.ready([
+      $script([
       'socket.io/socket.io.js',
       'dist/lib.min.js',
       'dist/zoggle.min.js',
@@ -81,7 +81,9 @@
       
       // addthis
       'http://w.sharethis.com/button/buttons.js'
-    ], function() {
+    ], 'deps')
+      
+    $script.ready('deps', function() {
       // when all is done, execute bootstrap angular application
       angular.bootstrap(document, ['zoggle']);
       // addthis
