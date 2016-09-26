@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       lib: {
         options: {
           sourceMap: 'public/dist/lib.js.map',
-          sourceMappingURL: 'dist/lib.js.map',
+          sourceMappingURL: 'lib.js.map',
           sourceMapPrefix: 1
         },
         files: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       zoggle: {
         options: {
           sourceMap: 'public/dist/zoggle.js.map',
-          sourceMappingURL: 'dist/zoggle.js.map',
+          sourceMappingURL: 'zoggle.js.map',
           sourceMapPrefix: 1
         },
         files: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
     }
   });
 
-  
+
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-ngmin');

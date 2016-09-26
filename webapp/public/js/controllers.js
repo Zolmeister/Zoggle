@@ -32,7 +32,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
         $scope.input.word = _.map(arr, function(i){return $scope.board[i]}).join('').toLowerCase()
       }
     }
-    var wsUrl = settings.development ? '' : 'https://zoggle.herokuapp.com:443'
+    var wsUrl = settings.development ? '' : 'https://zoggle.zolmeister.com'
     var socket = io.connect(wsUrl)
 
     socket.on('game', function (GAME) {
@@ -41,7 +41,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
       for (var key in GAME) {
         $scope[key] = GAME[key]
       }
-      
+
       // time difference between me and the server, with 50ms buffer
       $scope.timeDelta = Date.now() - $scope.time + 50
       $scope.words = []
@@ -92,7 +92,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
     $scope.guess = function () {
       var word = $scope.input.word
       if(!word) return
-      
+
       if(_.contains($scope.solutions, word)) {
         if(_.contains($scope.words, word)) {
           $scope.wordSuccess = 'used'
@@ -104,11 +104,11 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
       } else {
         $scope.wordSuccess = 'fail'
       }
-      
+
       $timeout(function() {
         $scope.wordSuccess = null
       }, 500)
-      
+
       $scope.input.word = ''
     }
     $scope.editName = function () {
@@ -125,7 +125,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
       if(!word[index]) return past
       var currentLetter = grid[pos] === 'Qu' ? 'Q' : grid[pos]
       if(pos < 0 || pos > grid.length || _.contains(past, pos) || word[index] !== currentLetter) return []
-      
+
       var dirs = _.filter([-5, -4, -3, -1, 1, 3, 4, 5], function(dir) {
         var col = pos%4
         if (col === 0 && (dir === -1 || dir === 3 || dir === -5)) return false
@@ -139,7 +139,7 @@ controller('MainCtrl', ['$scope', 'checkMobile', '$timeout', 'settings',
     $scope.$watch('input.word', function() {
       if($scope.isSelecting.mouse) return
       if(!$scope.board.length || !$scope.input.word.length) return $scope.selected = []
-      
+
       // only run on Q if u is present
       if($scope.input.word.length < 2 && $scope.input.word[0].toUpperCase() === 'Q') return
 

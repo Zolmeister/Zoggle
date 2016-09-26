@@ -36,6 +36,9 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/public/index.html')
 });
+app.get('/ping', function (req, res) {
+  res.end('pong')
+})
 app.get('/manifest.webapp', function(req, res) {
   res.header('Content-Type', 'application/x-web-app-manifest+json')
   res.sendfile(__dirname + '/public/manifest.webapp')
@@ -89,7 +92,7 @@ io.sockets.on('connection', function (socket) {
       return p.name !== name
     })
     if(exists) return socket.emit('nameUsed', true)
-    
+
     player.name = name.substr(0,18)
     socket.emit('nameUsed', false)
     io.sockets.emit('player-update', GAME.players.indexOf(player), player)

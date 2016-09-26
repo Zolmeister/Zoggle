@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#build 1.0.6
+#build 1.0.7
 
 CACHE:
 index.html
@@ -12,7 +12,7 @@ dist/lib.min.js
 dist/zoggle.min.js
 
 http://cdn.kik.com/cards/0.11.3/cards.js
-        
+
 
 NETWORK:
 *
